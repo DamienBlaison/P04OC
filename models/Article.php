@@ -122,9 +122,6 @@ class Article
     return $result;
 
   }
-
-
-
 }
 
 ?>
