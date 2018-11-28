@@ -1,11 +1,4 @@
 <?php
-if (isset($_POST['Signaler']))
-{
-      ?>
-      /*  fonction dn'envoi du signalement a faire*/
-      <?php
-}
-
 
 
 if (isset($_SESSION['login']))
@@ -47,12 +40,13 @@ $comments = $comments->read_comments();
 
  ?>
 
+ <?php
 
 
+$signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
+$signal = $signal->create_signal();
 
-
-
-
+ ?>
 
 <?php include('./views/frontend/menu.php'); ?>
 
@@ -151,6 +145,7 @@ $comments = $comments->read_comments();
 </div>
 </form>
 
+
 <form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post">
   <div class="modal fade" id="not_connected" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -158,6 +153,41 @@ $comments = $comments->read_comments();
       <div class="modal-content container-fluid">
         <div class="modal-header row ">
           <p>Veuillez vous identifer pour laisser un commentaire</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body row ">
+
+          <label for="login">Login</label>
+          <input type="text" name="login"  id="login"  class="col-md-12 border border-secondary" placeholder="Login"r equired="required"></input>
+
+           <label for="password">Mot de passe</label>
+          <input type="password" name="password" id="password"  class="col-md-12 border border-secondary" placeholder="Mot de passe"required="required"></input>
+
+        </div>
+        <div class="modal-footer row justify-content-between">
+
+          <a href="index.php?action=creationcompte"  class="btn btn-primary">Créer son compte</a>
+          <div class="">
+              <button type="submit" id="connexion"class="btn btn-outline-secondary">Se connecter</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</form>
+<form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post">
+  <div class="modal fade" id="not_connected_signal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content container-fluid">
+        <div class="modal-header row ">
+          <p>Veuillez vous identifer pour signaler un commentaire</p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -196,18 +226,60 @@ $comments = $comments->read_comments();
       <?php
       while ($data=$comments->fetch()) {
         ?>
-        <form class="comments bg-white" action="/index.php?action=chapter&id_article=<?php echo $_GET['id_article']?>" method="post">
+        <div class="comments bg-white" action="/index.php?action=chapter&id_article=<?php echo $_GET['id_article']?>" method="POST">
                   <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName']?> </p>
-                 <p> <?php echo $data['comment']?> </p>
-                 <div class="d-flex justify-content-end">
-                     <button class="btn btn-outline-secondary d-flex justify-content-end" type="Submit" name="Signaler">Signaler</button>
-                 </div>
+
+                  <p> <?php echo $data['comment']?> </p>
+
+                 <?php
+                 if ($_SESSION['login']== NULL)
+                 {?>
+                  <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected_signal">Signaler</button>
+                  </div>
+                   <?php
+                 }  else {?>
+                  <div class="d-flex justify-content-end">
+                        <button id="btnSignal" data-toggle="modal" data-target="#connected_signal_<?php echo $data['id_comment']?>" type="button" class="btn btn-sm btn-outline-secondary">Signaler</button>
+                  </div>
+
+                  <form action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post" >
+                    <div class="modal fade" id="connected_signal_<?php echo $data['id_comment']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content container-fluid">
+                        <div class="modal-header row ">
+                        <input type="text" name="id_comment2" value="<?php echo $data['id_comment']?>"hidden>
+                          <input type="text" name="titreSignal" value=""id="exampleModalCenterTitle" placeholder="Titre du signalement" class="col-md-12 border border-secondary" required="required"></input>
+
+                        </div>
+                        <div class="modal-body row ">
+
+                          <textarea type="text" name="content_signal" value="" id="exampleModalCenterTitle2" placeholder="Signalement" class="col-md-12 border border-secondary" required="required"></textarea>
+
+                        </div>
+                        <div class="modal-footer row">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                          <button type="submit" id="saveSignal"class="btn btn-outline-secondary">Envoyer votre signalement</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </form>
 
 
-        </form>
+                  <?php
+                 }
+                 ?>
+        </div>
 
 
-  <?php
+
+
+
+
+
+        <?php
       }
        ?>
  </div>
