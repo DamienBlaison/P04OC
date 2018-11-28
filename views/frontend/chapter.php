@@ -24,6 +24,16 @@ $data=$article->read_article();
 $data=$data->fetch();
 $id=$_GET['id_article'];
 
+$next=$_GET['id_article']+1;
+$verif_status=new Article($next,"","","");
+$verif_status=$verif_status->read_article();
+$verif_status=$verif_status->fetch();
+$verif_status=$verif_status['published'];
+
+
+
+
+
 if(isset($_POST['titreComment']) && isset($_POST['ContentComment'])){
 $comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'2');
 $comment = $comment->create_comment();
@@ -35,16 +45,19 @@ $nbArticle=$nbArticle->fetch();
 
 <?php
 
-$comments = new Comment("","","","",$_GET['id_article'],'3');
-$comments = $comments->read_comments();
+$comments = new Comment("","","","","",'3');
+$comments = $comments->read_comments_by_article($_GET['id_article']);
 
  ?>
 
  <?php
 
+if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST['id_comment2']))
+{
+      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
+      $signal = $signal->create_signal();
+}
 
-$signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
-$signal = $signal->create_signal();
 
  ?>
 
@@ -86,13 +99,16 @@ $signal = $signal->create_signal();
               <?php
               break;
             case "$nbArticle[0]":
-              ?><a href="index.php?action=chapter&id_article=<?php echo ($_GET['id_article']-1)?>" class="btn btn-sm btn-outline-secondary" >Chapitre Précedent</a>
-              <?php
+                  ?><a href="index.php?action=chapter&id_article=<?php echo ($_GET['id_article']-1)?>" class="btn btn-sm btn-outline-secondary" >Chapitre Précedent</a>
+                   <?php
               break;
             default:
               ?><a href="index.php?action=chapter&id_article=<?php echo ($_GET['id_article']-1)?>" class="btn btn-sm btn-outline-secondary" >Chapitre Précedent</a>
-              <a href="index.php?action=chapter&id_article=<?php echo ($_GET['id_article']+1)?>" class="btn btn-sm btn-outline-secondary" >Chapitre suivant</a>
               <?php
+              if($verif_status=='1')
+              {?>
+                    <a href="index.php?action=chapter&id_article=<?php echo ($_GET['id_article']+1)?>" class="btn btn-sm btn-outline-secondary" >Chapitre suivant</a>
+              <?php };
               break;
             };?>
           </div>
@@ -222,7 +238,7 @@ $signal = $signal->create_signal();
         <div class="container-fluid">
 
 
-    <div class="col-md-12 comments_container border-secondary">
+    <div class="col-md-12 comments_container border-secondary mb100">
       <?php
       while ($data=$comments->fetch()) {
         ?>
@@ -272,12 +288,6 @@ $signal = $signal->create_signal();
                  }
                  ?>
         </div>
-
-
-
-
-
-
 
         <?php
       }
