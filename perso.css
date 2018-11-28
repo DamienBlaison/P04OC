@@ -1,0 +1,318 @@
+@font-face {
+    font-family: 'Alex';
+    src: url(./css/AlexBrush-Regular.ttf);
+}
+
+html
+{
+  height: 100%;
+  margin:0px;
+}
+
+
+.bodyback
+{
+  /*background-color: #ecf0f5;*/
+  min-height: 900px;
+
+}
+.margintb
+{
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+
+.ajusttitre
+{
+  margin-bottom:12px;
+  padding-left: 12px;
+}
+
+iframe
+{
+  min-height: 530px;
+  max-height: 530px;
+}
+.card
+{
+  border-style:none;
+  background-color: transparent;
+}
+.cardpers
+{
+padding:15px;
+}
+.card-title
+{
+  background-color:rgb(52, 58, 64);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+.card-subtitle
+{
+  background-color: #6c757d;
+  color:white;
+  padding: 15px;
+  border-radius: 5px;
+}
+.card-body
+{
+  background-color: #ecf0f5;
+  border-radius: 5px;
+}
+.card-text
+{
+  height: 300px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: rgb(52, 58, 64);
+  color:rgb(52, 58, 64);
+  padding:15px;
+  margin-top: 20px;
+
+}
+
+.containerArticle
+{
+  padding: 30px;
+}
+.mrgr2
+{
+  margin-right: 0.5px;
+}
+
+.tablepers
+{
+  background-color:white;
+}
+.breadcrumb
+{
+  margin-bottom:0px;
+background-color: white;
+padding:6px 12px;
+}
+
+.subtitlesection
+{
+  background-color: rgba(255,255,255,0.4);
+}
+
+.titlesection
+{
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.mt20
+{
+  margin-top: 20px;
+}
+.pt150
+{
+  padding-top: 150px;
+}
+.coordonnees
+{
+  margin: 20px;
+}
+.slideAccueil
+{
+  min-height:600px;
+  max-height: 600px;
+}
+
+
+/* defil cardpers*/
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y:hidden;
+  height: 100%;
+}
+  .card-wrapper {
+    flex: 0 0 auto;
+  }
+
+  .scrolling-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+#footerfront
+{
+  background-image: url(./images/footer.jpg);
+  color:white;
+
+}
+body
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url(./images/bg.jpg);
+}
+.secHome
+{
+height: 50%;
+
+background-color: rgba(255, 255, 255, 0.5);
+margin-bottom:150px;
+padding-top: 25px;
+
+
+}
+.Titre
+{
+  font-family: 'Alex';
+  font-size: 100px;
+  text-align: center;
+  color: white;
+  background-color: rgba(0,0,0,0.5);
+  margin-bottom:150px;
+}
+
+.imgChap
+{
+  position:relative;
+}
+.textChap
+{
+  position:absolute;
+  bottom: 0px;
+  left: 15px;
+  color: white;
+  font-weight: lighter;
+  background-color: rgba(0,0,0,0.5);
+  width: calc(100% - 30px);
+    padding:15px;
+
+}
+.Title
+{
+  font-family: 'Alex';
+  font-size:50px;
+}
+.more
+{
+  position: absolute;
+  bottom: 20px;
+  right: 35px;
+}
+.textChap2
+{
+  left: 0px;
+  width:100%;
+}
+.pb-25
+{padding-bottom: 45px;}
+
+.espace
+{
+  padding-top: 400px;
+}
+.menuFront
+{
+   background-color: rgba(0,0,0,0.5);
+   position: fixed;
+   width: 100%;
+   height: 60px;
+}
+.opacity
+{
+  opacity: 0.9;
+}
+.mt-Titre
+{
+  margin-left:400px;
+  margin-right: 400px;
+  margin-top:400px;
+  color: white;
+
+
+}
+.mt-Titre H1
+{
+    font-size: 4rem;
+
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+  animation-duration: 2s;
+border-bottom-style: solid;
+
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    border-bottom-style: none;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    border-bottom-style: solid;
+    border-color: white;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUpBig {
+
+  animation-name: fadeInUpBig;
+    animation-duration: 2s;
+}
+.bgblack
+{
+    background-color: rgba(0,0,0,0.5);
+    padding:50px;
+}
+#forteroche
+{
+  min-width: 100%;
+}
+.mt200
+{
+  margin-top: 200px;
+}
+.read_chapter
+{
+  margin-bottom: 100px;
+  min-height: 800px;
+  box-shadow: 5px 5px 5px 0px;
+  padding:50px;
+}
+.Sub
+{
+  font-size: 32px;
+}
+
+#exampleModalCenterTitle2
+{
+  min-height:500px;
+  max-height:500px;
+}
+.compte
+{
+  height: 1000px;
+}
+.mb100
+{
+  margin-bottom:100px;
+}

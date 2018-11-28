@@ -1,0 +1,23 @@
+INSERT INTO table (nom_colonne_1, nom_colonne_2, ...
+ VALUES ('valeur 1', 'valeur 2', ...)
+
+ ou si plusieurs ligne a la fois
+
+ INSERT INTO client (prenom, nom, ville, age)
+ VALUES
+ ('Rébecca', 'Armand', 'Saint-Didier-des-Bois', 24),
+ ('Aimée', 'Hebert', 'Marigny-le-Châtel', 36),
+ ('Marielle', 'Ribeiro', 'Maillères', 27),
+ ('Hilaire', 'Savary', 'Conie-Molitard', 58);
+
+
+ SELECT nom_du_champ FROM nom_du_tableau
+
+
+UPDATE table
+SET nom_colonne_1 = 'nouvelle valeur'
+WHERE condition
+
+
+DELETE FROM `table`
+WHERE condition

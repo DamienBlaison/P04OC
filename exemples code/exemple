@@ -1,0 +1,35 @@
+/*
+
+$content= 'ceci est un test d insertion titre';
+$title='ceci est un test d insertion contenu';
+
+$bdd-> exec("INSERT INTO articles (article,title) VALUES ('$content','$title')");
+
+$result= $bdd-> query("UPDATE articles SET article = 'ceciest une deuxielme MAJ de article' WHERE id_article =1");
+
+$test = $bdd-> query("SELECT article FROM articles WHERE id_article=1");
+
+$bdd->query("DELETE FROM articles WHERE id_article=34");
+
+*/
+
+
+
+
+/*
+while ($données = $test->fetch())
+{
+	?> <p> <?php
+	echo $données['article'];
+
+}
+*/
+/*
+UPDATE table
+SET nom_colonne_1 = 'nouvelle valeur'
+WHERE condition
+
+
+DELETE FROM `table`
+WHERE condition
+*/

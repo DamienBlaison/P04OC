@@ -1,0 +1,1 @@
+select * from articles, comments, users where articles.id_article = comments.article and comments.author= users.id_user and comments.id_comment=5
