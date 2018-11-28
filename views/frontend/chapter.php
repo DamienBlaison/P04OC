@@ -2,7 +2,7 @@
 if (isset($_POST['Signaler']))
 {
       ?>
-      /*  foncitopn dn'envoi du signalement a faire*/
+      /*  fonction dn'envoi du signalement a faire*/
       <?php
 }
 
@@ -77,7 +77,7 @@ $comments = $comments->read_comments();
 
 <div class="container">
   <div class="row">
-    <div class="container-fluid">
+    <div class="container-fluid mb50">
       <div class="bg-white read_chapter">
         <div class="">
           <?php echo $data['article'] ?>
@@ -123,7 +123,7 @@ $comments = $comments->read_comments();
 </div>
 </div>
 
-  </div>
+
 <form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post" >
 
 
@@ -186,30 +186,33 @@ $comments = $comments->read_comments();
   </div>
 
 </form>
-
+ <h1 class="Titre">Vos commentaires</h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 bg-light">
+        <div class="container-fluid">
+
+
+    <div class="col-md-12 comments_container border-secondary">
       <?php
       while ($data=$comments->fetch()) {
         ?>
-        <form class="" action="/index.php?action=chapter&id_article=<?php echo $_GET['id_article']?>" method="post">
-             <div class="border border-secondary">
-                  <p>De:</p>
-                  <p> <?php echo $data['firstName']?> </p>
-                  <p> <?php echo $data['lastName']?> </p>
+        <form class="comments bg-white" action="/index.php?action=chapter&id_article=<?php echo $_GET['id_article']?>" method="post">
+                  <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName']?> </p>
                  <p> <?php echo $data['comment']?> </p>
-                 <button type="Submit" name="Signaler">Signaler</button>
-             </div>
+                 <div class="d-flex justify-content-end">
+                     <button class="btn btn-outline-secondary d-flex justify-content-end" type="Submit" name="Signaler">Signaler</button>
+                 </div>
+
+
         </form>
 
 
   <?php
       }
        ?>
-
+ </div>
     </div>
 
   </div>
-
+ </div>
 </div>

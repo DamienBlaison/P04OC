@@ -316,3 +316,24 @@ border-bottom-style: solid;
 {
   margin-bottom:100px;
 }
+
+.comments
+{
+      border-color: grey;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 20px;
+
+}
+.comments_container
+{
+      background-color: rgba(52,58,64,0.5);
+      padding:20px;
+      box-shadow: 5px 5px 5px 0px;
+}
+.mb50
+{
+      margin-bottom: 50px;
+}
