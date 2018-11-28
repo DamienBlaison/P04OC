@@ -86,6 +86,13 @@ function read_comments()
       return $result;
     }
 
+    function read_comments_by_article($a)
+    {
+          $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+          $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$a' and comments.statut= 2 ");
+       return $result;
+    }
+
 function read_comment()
   {
 		$bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
