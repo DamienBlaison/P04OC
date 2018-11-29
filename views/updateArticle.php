@@ -219,16 +219,4 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
 </div>
 </div>
 
-
-
-
-
-  <script type="text/javascript">
-
-  function filtre(a)
-  {
-
-  }
-
-  </script>
 </div>

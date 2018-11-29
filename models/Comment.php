@@ -72,10 +72,12 @@ function read_comments()
           $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
           $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$this->article_comment' and comments.statut= 2 ");
           break;
+
         case '3':
           $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
           $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$this->article_comment' and comments.statut= 3 ");
           break;
+
         default:
           $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
           $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$this->article_comment'");
@@ -89,7 +91,7 @@ function read_comments()
     function read_comments_by_article($a)
     {
           $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
-          $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$a' and comments.statut= 2 ");
+          $result = $bdd-> query("SELECT * FROM articles, comments, users WHERE articles.id_article = comments.article AND comments.author= users.id_user AND comments.article = '$a' and comments.statut= 1 ");
        return $result;
     }
 

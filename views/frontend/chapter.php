@@ -56,6 +56,8 @@ if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST[
 {
       $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
       $signal = $signal->create_signal();
+      $updateComment = new Comment("","","","","","");
+      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
 }
 
 
@@ -276,7 +278,6 @@ if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST[
                         <div class="modal-footer row">
                           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
                           <button type="submit" id="saveSignal"class="btn btn-outline-secondary">Envoyer votre signalement</button>
-
                         </div>
                       </div>
                     </div>

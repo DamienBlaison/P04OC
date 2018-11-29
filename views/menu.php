@@ -25,7 +25,7 @@
       </li>
 
       <li class="nav-item">
-       <a class="nav-link" href="index.php?action=moderation&statut=2">Modération</a>
+       <a class="nav-link" href="index.php?action=moderation&statut=2">Signalements</a>
      </li>
     </ul>
   </div>
