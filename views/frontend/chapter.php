@@ -45,23 +45,25 @@ $nbArticle=$nbArticle->fetch();
 
 <?php
 
+if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST['id_comment2']))
+{
+     $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
+     $signal = $signal->create_signal();
+     $updateComment = new Comment("","","","","","");
+     $updateComment->update_comment_statut('2',$_POST['id_comment2']);
+}
+
+
+?>
+
+<?php
+
 $comments = new Comment("","","","","",'3');
 $comments = $comments->read_comments_by_article($_GET['id_article']);
 
  ?>
 
- <?php
 
-if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST['id_comment2']))
-{
-      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
-      $signal = $signal->create_signal();
-      $updateComment = new Comment("","","","","","");
-      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
-}
-
-
- ?>
 
 <?php include('./views/frontend/menu.php'); ?>
 
