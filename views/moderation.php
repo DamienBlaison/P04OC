@@ -53,11 +53,13 @@
                                     <div class="row ">
                                           <div class="container-fluid">
                                                 <div class="row pad10 mt20 bg-dark text-white border-bottom border-secondary ">
-
+                                                      <button class="btn btn-outline-secondary btn-sm"type="button" data-toggle="collapse" data-target="#collapse<?php echo $data['id_signal'] ?>" aria-expanded="true" aria-controls="collapse<?php echo $data['id_signal']?>">
+                                                            <i class="fas fa-search"></i>
+                                                      </button>
                                                       <h5 class="col-md-4">Titre</h5>
                                                       <h5 class="col-md-4"> Auteur </h5>
-                                                      <h5 class="col-md-4"> signalé par </h5>
-                                                      <h5 class=""></h5>
+                                                      <h5 class="col-md-3"> signalé par </h5>
+
                                                 </div>
                                           </div>
                                     </div>
@@ -72,7 +74,10 @@
                               <div class="card">
 
                                     <div class=" container-fluid bg-white border border-top-0 border-secondary " id="<?php echo 'heading'.$data['id_signal'] ?>">
-                                          <div class="row ">
+                                          <div class="row pad10">
+                                                <button class="btn btn-outline-secondary btn-sm"type="button" data-toggle="collapse" data-target="#collapse<?php echo $data['id_signal'] ?>" aria-expanded="true" aria-controls="collapse<?php echo $data['id_signal']?>">
+                                                      <i class="fas fa-search"></i>
+                                                </button>
                                                 <h5 class="col-md-4"><?php echo $data['5']; ?></h5>
                                                 <h5 class="col-md-4"><?php echo $data['firstName'] .' '. $data['lastName'] ;?></h5>
                                                 <h5 class="col-md-3">
@@ -83,9 +88,7 @@
                                                       //voir avec jerome pour sortir ce code de la vue
                                                       ?>
                                                 </h5>
-                                                <button class="col-md-1 btn btn-outline-secondary"type="button" data-toggle="collapse" data-target="#collapse<?php echo $data['id_signal'] ?>" aria-expanded="true" aria-controls="collapse<?php echo $data['id_signal']?>">
-                                                      <i class="fas fa-search"></i>
-                                                </button>
+
 
                                           </div>
                                     </div>
