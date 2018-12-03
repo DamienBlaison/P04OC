@@ -15,14 +15,22 @@
           <a class="dropdown-item" href="index.php?action=listArticle&plage=1">Liste des articles</a>
         </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Gestion des utilisateurs
-          </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?action=listUsers&plage=1">Liste des utilisateurs</a>
-        </div>
+
+        <li class="nav-item">
+        <a class="nav-link" href="index.php?action=listUsers&plage=1">Gestion des utilisateurs</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Commentaires
+        </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+            <a class="dropdown-item" href="index.php?action=unread_comments&plage=1">Les derniers commentaires</a>
+            <a class="dropdown-item" href="index.php?action=chapter_comments&plage=1">Commentaires par chapitres</a>
+            <a class="dropdown-item" href="index.php?action=user_comments&plage=1">Commentaires par utilisateurs</a>
+            <a class="dropdown-item" href="index.php?action=all_comments&plage=1">Historique</a>
+      </div>
+    </li>
+
 
       <li class="nav-item">
        <a class="nav-link" href="index.php?action=moderation&statut=2">Signalements</a>

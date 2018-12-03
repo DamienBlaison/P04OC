@@ -25,8 +25,8 @@ if( isset($_POST['title_article']) && isset($_POST['content_article']))
 
 }
 
-$readcomment = new Comment("","","","",$id,"");
-$comment = new Comment("","","","","","");
+$readcomment = new Comment("","","","",$id,"","");
+$comment = new Comment("","","","","","","");
 
 if (isset($_GET['filtre'])) {
 
@@ -119,9 +119,7 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
       <div class="container-fluid">
         <div class="card-header subtitlesection row justify-content-between" id="headingOne">
           <h5 class="mb-0">
-            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Détail du chapitre
-            </button>
+
           </h5>
           <form class="" action="index.php?action=updateArticle&id=<?php echo $_GET['id'];?>&published=<?php echo $_GET['published']; ?>&filtre=4"
             method="post">
@@ -169,7 +167,7 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
           <div>
             <a class="btn btn-primary mrgr2" href="index.php?action=updateArticle&id=<?php echo $id?>&filtre=4 ">Total <span class="badge badge-light"> <?php echo ($online + $waiting + $blocked) ?> </span></a>
             <a class="btn btn-success mrgr2" href="index.php?action=updateArticle&id=<?php echo $id?>&filtre=1 ">Online  <span class="badge badge-light"> <?php echo $online ?> </span></a>
-            <a class="btn btn-info mrgr2" href="index.php?action=updateArticle&id=<?php echo $id?>&filtre=2 ">En attente de modération  <span class="badge badge-light"> <?php echo $waiting ?></span></a>
+            <a class="btn btn-info mrgr2" href="index.php?action=updateArticle&id=<?php echo $id?>&filtre=2 ">Signalés  <span class="badge badge-light"> <?php echo $waiting ?></span></a>
             <a class="btn btn-danger mrgr2" href="index.php?action=updateArticle&id=<?php echo $id?>&filtre=3 ">Bloqués <span class="badge badge-light"> <?php echo $blocked ?></span></a>
           </div>
         </div>
@@ -184,7 +182,7 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
       while ($data = $resultcomment->fetch())
       {
         ?>
-        <form class="col-md-4 cardpers" action="./index.php?action=updateArticle&id=<?php echo $_GET['id']?>&filtre=<?php echo $_GET['filtre'] ?>" method="POST">
+        <form class="col-md-4 cardpers" action="./index.php?action=updateArticle&id=<?php echo $_GET['id']?>&filtre=<?php echo $_GET['filtre']?>" method="POST">
           <div class="card">
             <div class="card-body">
               <h5 class="card-subtitle mb-2">Titre: <?php echo $data['5']; ?></h5>

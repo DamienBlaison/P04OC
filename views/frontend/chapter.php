@@ -35,7 +35,7 @@ $verif_status=$verif_status['published'];
 
 
 if(isset($_POST['titreComment']) && isset($_POST['ContentComment'])){
-$comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'2');
+$comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'2',"0");
 $comment = $comment->create_comment();
 };
 
@@ -47,9 +47,9 @@ $nbArticle=$nbArticle->fetch();
 
 if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST['id_comment2']))
 {
-     $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'2');
+     $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'1');
      $signal = $signal->create_signal();
-     $updateComment = new Comment("","","","","","");
+     $updateComment = new Comment("","","","","","","");
      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
 }
 
@@ -58,7 +58,7 @@ if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST[
 
 <?php
 
-$comments = new Comment("","","","","",'3');
+$comments = new Comment("","","","","",'3',"");
 $comments = $comments->read_comments_by_article($_GET['id_article']);
 
  ?>

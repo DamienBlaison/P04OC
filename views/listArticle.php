@@ -61,7 +61,7 @@ $a=0;
       while ($donnees = $listArticle->fetch())
       {
         $a=$donnees['id_article'];
-        $instanceComment = new Comment("","","","","$a","");
+        $instanceComment = new Comment("","","","","$a","","");
 
         ?>
 

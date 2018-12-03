@@ -1,33 +1,38 @@
 <div class="bodyback">
       <?php
 
-      $comment = new Comment("","","","","","");
+      $comment = new Comment("","","","","","","");
       $signal = new Signal("","","","","","");
-      $signal_waiting = $signal->read_signal('2');
-
 
 
       if(isset($_POST['MAJstatut']))
       {
-            switch($_POST['MAJstatut'])
+
+            if(isset($_POST['id_signal'])&& isset($_POST['id_comment']))
             {
-                  case 'Publier':
-
+                  $id_signal =$_POST['id_signal'];
                   $b=$_POST['id_comment'];
-                  $comment->update_comment_statut(1,$b);
 
+                  switch($_POST['MAJstatut'])
+                  {
+                  case 'Publier':
+                  $comment->update_comment_statut(1,$b);
+                  $signal->update_state_id(2,$id_signal);
                   break;
+
                   case 'Bloquer le commentaire':
 
-                  $b=$_POST['id_comment'];
                   $comment->update_comment_statut(3,$b);
-
+                  $signal->update_state_id(2,$id_signal);
                   break;
 
+                  }
             }
       };
 
-      $readComment = $comment->read_comments_waiting()
+      $signal_waiting = $signal->read_signal(1);
+      $readComment = $comment->read_comments_waiting();
+
 
 
       ?>
@@ -116,7 +121,8 @@
                                                       </div>
 
                                                       <p class="card-text"><?php echo $data['content_signal'] ;?></p>
-                                                      <input type="text" name="id_comment" value="<?php echo $data['id_comment'];?>" class="d-none">
+                                                      <input type="text" name="id_comment" value="<?php echo $data['id_comment'];?>" class="">
+                                                      <input type="text" name="id_signal" value="<?php echo $data['id_signal'];?>" class="">
                                                       <input type="submit" name="MAJstatut" value="Publier" class="btn btn-success">
                                                       <input type="submit" name="MAJstatut" value="Bloquer le commentaire" class="btn btn-danger">
 

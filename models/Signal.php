@@ -32,6 +32,13 @@ function read_signal($a)
       $result = $bdd-> query("SELECT * FROM signals,comments,users,articles where status_signal='$a' and signals.id_comment_signal=comments.id_comment and users.id_user = comments.author and articles.id_article=comments.article");
       return $result;
       }
+function update_state_id($a,$b)
+      {
+            $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+            $result = $bdd-> exec("UPDATE signals set status_signal='$a' where id_signal='$b'");
+            return $result;
+      }
+
 };
 
 ?>

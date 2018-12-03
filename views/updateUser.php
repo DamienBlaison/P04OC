@@ -6,7 +6,7 @@ $statut=$_GET['filtre'];
 
 
 $user= new User($id,"","","","","","");
-$comment = new Comment("","","","","","");
+$comment = new Comment("","","","","","","");
 
 if(isset($_POST['MAJstatut']))
   {
@@ -139,7 +139,7 @@ while ($countblocked=$countCommentStatut3->fetch())
           <div>
             <a class="btn btn-primary mrgr2" href="index.php?action=updateUser&id=<?php echo $id?>&filtre=4 ">Total <span class="badge badge-light"> <?php echo ($online + $waiting + $blocked) ?> </span></a>
             <a class="btn btn-success mrgr2" href="index.php?action=updateUser&id=<?php echo $id?>&filtre=1 ">Online  <span class="badge badge-light"> <?php echo $online ?> </span></a>
-            <a class="btn btn-info mrgr2" href="index.php?action=updateUser&id=<?php echo $id?>&filtre=2 ">En attente de modération  <span class="badge badge-light"> <?php echo $waiting ?></span></a>
+            <a class="btn btn-info mrgr2" href="index.php?action=updateUser&id=<?php echo $id?>&filtre=2 ">Signalés  <span class="badge badge-light"> <?php echo $waiting ?></span></a>
             <a class="btn btn-danger mrgr2" href="index.php?action=updateUser&id=<?php echo $id?>&filtre=3 ">Bloqués <span class="badge badge-light"> <?php echo $blocked ?></span></a>
           </div>
         </div>

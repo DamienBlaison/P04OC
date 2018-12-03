@@ -3,7 +3,7 @@
 
 $instanceUser= new User("","","","","","","");
 $listUser= $instanceUser->read_users();
-$instanceComment = new Comment("","","","","","");
+$instanceComment = new Comment("","","","","","","");
 
 
 

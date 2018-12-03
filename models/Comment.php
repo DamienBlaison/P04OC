@@ -9,8 +9,9 @@ class Comment
   public $author_comment;
   public $article_comment;
   public $statut_comment;
+  public $read_comment;
 
-function __construct($id,$title,$content,$author,$article,$statut)
+function __construct($id,$title,$content,$author,$article,$statut,$read)
   {
     $this->id_comment=$id;
     $this->title_comment=$title;
@@ -18,12 +19,13 @@ function __construct($id,$title,$content,$author,$article,$statut)
     $this->author_comment=$author;
     $this->article_comment=$article;
     $this->statut_comment=$statut;
+    $this->read_comment=$read;
   }
 
 function create_comment()
   {
 		$bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
-    $result = $bdd-> exec("INSERT INTO comments (comment,title,author,article,statut) VALUES ('$this->content_comment','$this->title_comment','$this->author_comment','$this->article_comment','$this->statut_comment')");
+    $result = $bdd-> exec("INSERT INTO comments (comment,title,author,article,statut,read_status) VALUES ('$this->content_comment','$this->title_comment','$this->author_comment','$this->article_comment','$this->statut_comment','$this->read_comment')");
     return $result;
   }
 
@@ -102,6 +104,13 @@ function read_comment()
     return $result;
   }
 
+function unread_comments()
+{
+      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+      $result = $bdd-> query("SELECT * FROM comments WHERE read_status=0 ORDER BY article DESC ");
+      return $result;
+}
+
 
   function read_comment_statut($a)
     {
@@ -151,6 +160,13 @@ function delete_comment()
     $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE author='$a' and statut='$b'");
     return $result;
   }
+
+  function count_unread_comments()
+  {
+       $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+       $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE read_status=0");
+       return $result;
+ }
 
 }
 
