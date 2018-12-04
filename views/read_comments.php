@@ -2,8 +2,8 @@
 <?php
       $comments = new Comment("","","","","","","");
 
-      $last_comments = $comments->unread_comments_plage();
-      $count_last_comments = $comments->count_unread_comments();
+      $last_comments = $comments->read_comments_plage();
+      $count_last_comments = $comments->count_read_comments();
       $list_chapter = $comments->select_chapter_comments();
  ?>
 
@@ -38,12 +38,12 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
         <li class="breadcrumb-item">Commentaires</li>
-        <li class="breadcrumb-item active" aria-current="page">Les derniers commentaires</li>
+        <li class="breadcrumb-item active" aria-current="page">Historiques commentaires</li>
       </ol>
     </nav>
   </div>
 </div>
-<form class="container-fluid margintb" method="POST" action="./index.php?action=unread_comments&plage=1">
+<form class="container-fluid margintb" method="POST" action="./index.php?action=read_comments&plage=1">
 <div class="container-fluid card-body">
 
 
@@ -95,7 +95,7 @@
 
 
     <div class="">
-         
+          
     </div>
     <div class="">
           <label for="filtre">Filtrer par chapitre</label>
@@ -121,13 +121,13 @@
         if(isset($_GET['plage'])&& $_GET['plage']>1){?>
 
           <li class="page-item">
-            <a class="page-link" href="index.php?action=unread_comments&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+            <a class="page-link" href="index.php?action=read_comments&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
           </li>
           <?php
         }else{
           ?>
           <li class="page-item disabled">
-            <a class="page-link" href="index.php?action=unread_comments&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+            <a class="page-link" href="index.php?action=read_comments&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
           </li>
           <?php
         }
@@ -136,7 +136,7 @@
         <?php
         for ($i=0; $i < $nbrepage ; $i++) {
           ?>
-          <li class="page-item"><a href="index.php?action=unread_comments&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
+          <li class="page-item"><a href="index.php?action=read_comments&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
           <?php
         }
         ?>
@@ -145,13 +145,13 @@
         <?php  if( (isset($_GET['plage'])) && ($_GET['plage']<$nbrepage)){?>
 
           <li class="page-item">
-            <a class="page-link" href="index.php?action=unread_comments&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+            <a class="page-link" href="index.php?action=read_comments&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
           </li>
           <?php
         }else{
           ?>
           <li class="page-item disabled">
-            <a class="page-link" href="index.php?action=unread_comments&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+            <a class="page-link" href="index.php?action=read_comments&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
           </li>
           <?php
         }

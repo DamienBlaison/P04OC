@@ -100,9 +100,129 @@ function read_comments()
 function read_comment()
   {
 		$bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
-    $result = $bdd-> query("SELECT * FROM  comments WHERE id_comment='$this->id_comment'");
+    $result = $bdd-> query("SELECT * FROM  comments,users WHERE id_comment='$this->id_comment'AND comments.author = users.id_user");
     return $result;
   }
+
+  function unread_comments_plage()
+
+  {
+      if(isset($_POST['filtre']))
+            {
+                  if($_POST['filtre']== 0)
+                  {
+                        if (isset($_GET['plage'])){
+                        $pagination = ($_GET['plage']-1)*12;
+
+                        $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                        $result = $bdd-> query("SELECT * FROM  comments where read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                        return $result;
+
+                        } else {
+                              $pagination=0;
+                              $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                              $result = $bdd-> query("SELECT * FROM  comments where read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                              return $result;
+                        }
+                  }
+                  else
+                  {
+                        if (isset($_GET['plage'])){
+                        $pagination = ($_GET['plage']-1)*12;
+                        $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                        $a=$_POST['filtre'];
+                        $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                        return $result;
+
+                        } else {
+                              $pagination=0;
+                              $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                              $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                              return $result;
+                        }
+                  }
+            }
+
+      else {
+
+            if (isset($_GET['plage']))
+            {
+                  $pagination = ($_GET['plage']-1)*12;
+                  $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                  $result = $bdd-> query("SELECT * FROM  comments where read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                  return $result;
+
+            } else {
+                  $pagination=0;
+                  $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                  $result = $bdd-> query("SELECT * FROM  comments where read_status=0 ORDER BY article DESC LIMIT $pagination,12");
+                  return $result;
+            }
+
+      }
+}
+
+function read_comments_plage()
+
+{
+    if(isset($_POST['filtre']))
+          {
+                if($_POST['filtre']== 0)
+                {
+                      if (isset($_GET['plage'])){
+                      $pagination = ($_GET['plage']-1)*12;
+
+                      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                      $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                      return $result;
+
+                      } else {
+                            $pagination=0;
+                            $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                            $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                            return $result;
+                      }
+                }
+                else
+                {
+                      if (isset($_GET['plage'])){
+                      $pagination = ($_GET['plage']-1)*12;
+                      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                      $a=$_POST['filtre'];
+                      $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                      return $result;
+
+                      } else {
+                            $pagination=0;
+                            $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                            $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                            return $result;
+                      }
+                }
+          }
+
+    else {
+
+          if (isset($_GET['plage']))
+          {
+                $pagination = ($_GET['plage']-1)*12;
+                $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                return $result;
+
+          } else {
+                $pagination=0;
+                $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+                $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                return $result;
+          }
+
+    }
+}
+
+
+
+
 
 function unread_comments()
 {
@@ -164,9 +284,56 @@ function delete_comment()
   function count_unread_comments()
   {
        $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+
+       if(isset($_POST['filtre'])&&$_POST['filtre']>0)
+       {
+            $article = $_POST['filtre'];
+            $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE read_status=0 AND article='$article'");
+            return $result;
+      } else {
+
        $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE read_status=0");
        return $result;
+       }
  }
+
+ function count_read_comments()
+{
+     $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+
+     if(isset($_POST['filtre'])&&$_POST['filtre']>0)
+     {
+          $article = $_POST['filtre'];
+          $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE read_status=1 AND article='$article'");
+          return $result;
+     } else {
+
+     $result = $bdd-> query("SELECT COUNT(id_comment) FROM comments WHERE read_status=1");
+     return $result;
+     }
+}
+function select_chapter_comments()
+{
+      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+
+      $result = $bdd-> query("SELECT DISTINCT article FROM comments WHERE read_status=0 ");
+      return $result;
+}
+
+function update_comment_read($a,$b)
+{
+      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+
+      $result = $bdd-> exec("UPDATE comments SET read_status ='$b' where id_comment='$a'");
+      return $result;
+}
+function read_comment_status($a)
+{
+      $bdd = new PDO('mysql:host=localhost;dbname=P4OC;charset=utf8', 'root', 'root');
+
+      $result = $bdd-> query("SELECT * FROM comments WHERE id_comment='$a'");
+      return $result;
+}
 
 }
 

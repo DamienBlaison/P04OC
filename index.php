@@ -68,6 +68,14 @@
             include('./views/unread_comments.php');
             break;
 
+            case 'read_comments':
+            include('./views/read_comments.php');
+            break;
+
+            case 'readcomment':
+            include('./views/readcomment.php');
+            break;
+
             default :
             include('./views/frontend/Home.php');
 
