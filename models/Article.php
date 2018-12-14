@@ -1,8 +1,5 @@
-
 <?php
-
 class Article
-
 {
 
       public $id_article;
@@ -122,5 +119,4 @@ class Article
 
       }
 }
-
 ?>

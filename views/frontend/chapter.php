@@ -35,7 +35,7 @@ $verif_status=$verif_status['published'];
 
 
 if(isset($_POST['titreComment']) && isset($_POST['ContentComment'])){
-$comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'2',"0");
+$comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'1',"0");
 $comment = $comment->create_comment();
 };
 

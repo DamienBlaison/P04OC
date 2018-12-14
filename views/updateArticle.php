@@ -119,7 +119,9 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
       <div class="container-fluid">
         <div class="card-header subtitlesection row justify-content-between" id="headingOne">
           <h5 class="mb-0">
-
+                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                 Chapitre
+               </button>
           </h5>
           <form class="" action="index.php?action=updateArticle&id=<?php echo $_GET['id'];?>&published=<?php echo $_GET['published']; ?>&filtre=4"
             method="post">
@@ -185,9 +187,9 @@ if (isset($_GET['published']) && $_GET['published'] == 0){
         <form class="col-md-4 cardpers" action="./index.php?action=updateArticle&id=<?php echo $_GET['id']?>&filtre=<?php echo $_GET['filtre']?>" method="POST">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-subtitle mb-2">Titre: <?php echo $data['5']; ?></h5>
+              <h5 class="card-subtitle mb-2"><?php echo $data['6']; ?></h5>
               <a href="index.php?action=updateUser&id=<?php echo $data['author']; ?>&filtre=4">
-                <h6 class="card-title mb-2 border border-info bg-white text-info">Utilisateur: <?php echo $data['11'] .' '. $data['12'] ;?></h6>
+                <h6 class="card-title mb-2 border border-info bg-white text-info">De <?php echo $data['13'] .' '. $data['14'] ;?></h6>
               </a>
 
               <div class="card-text"><?php echo $data['comment'] ;?></div>

@@ -158,11 +158,11 @@ while ($countblocked=$countCommentStatut3->fetch())
               <div class="card">
                 <div class="card-body">
                   <a href="./index.php?action=updateArticle&id=<?php echo $data['article'] ;?>">
-                  <h5 class="card-title" >Chapitre: <?php echo $data['2'] ;?></h5>
+                  <h5 class="card-title" ><?php echo $data['2'] ;?></h5>
                   </a>
 
 
-                  <h5 class="card-subtitle mb-2">Titre: <?php echo $data['5']; ?></h5>
+                  <h5 class="card-subtitle mb-2"><?php echo $data['6']; ?></h5>
 
                   <p class="card-text"><?php echo $data['comment'] ;?></p>
                   <input type="text" name="id_comment" value="<?php echo $data['id_comment'];?>" class="d-none">

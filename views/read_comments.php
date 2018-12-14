@@ -2,9 +2,9 @@
 <?php
       $comments = new Comment("","","","","","","");
 
-      $last_comments = $comments->read_comments_plage();
+      $last_comments = $comments->read_comments_plage(1);
       $count_last_comments = $comments->count_read_comments();
-      $list_chapter = $comments->select_chapter_comments();
+      $list_chapter = $comments->select_chapter_comments(1);
  ?>
 
  <?php
@@ -55,11 +55,11 @@
 
       <tr class="thead-dark row m0">
 
-        <th  class="col-1 d-none" scope="col">Id</th>
-        <th  class="col-1 text-center" scope="col">Chapitre</th>
-        <th  class="col-3" scope="col">Titre</th>
-        <th  class="col-7" scope="col">Commentaire</th>
-        <th  class="col-1 text-center" scope="col">Auteur</th>
+            <th  class="col-1 d-none" scope="col">Id</th>
+            <th  class="col-1 text-center" scope="col">Chapitre</th>
+            <th  class="col-4" scope="col">Titre</th>
+            <th  class="col-5" scope="col">Commentaire</th>
+            <th  class="col-2 text-center" scope="col">Auteur</th>
 
       </tr>
 
@@ -78,9 +78,9 @@
 
           <td class="col-1 d-none"><input type="text" name="<?php echo data['id_comment'] ?>"><?php echo $data['id_comment'];?></input></td>
           <td class="col-1 text-center"><a href="index.php?action=updateArticle&id=<?php echo $data['article']?>"><?php echo $data['article']?></a></td>
-          <td class="col-3"><a href="index.php?action=readcomment&id=<?php echo $data['id_comment']?>"><?php echo $data['title'];?></a></td>
-          <td class="col-7"><a href="index.php?action=readcomment&id=<?php echo $data['id_comment']?>"><?php echo $data['comment'];?></a></td>
-          <td class="col-1 text-center"><a href="index.php?action=readcomment&id=<?php echo $data['id_comment']?>"><?php echo $data['author'];?></td>
+          <td class="col-4"><a href="index.php?action=readcomment&id=<?php echo $data['id_comment']?>"><?php echo $data['title'];?></a></td>
+          <td class="col-5"><a href="index.php?action=readcomment&id=<?php echo $data['id_comment']?>"><?php echo $data['comment'];?></a></td>
+          <td class="col-2 text-center"><a href="index.php?action=updateUser&id=<?php echo $data['id_user']?>&filtre=4?>"><?php echo $data['firstName'].' '.$data['lastName'];?></td>
 
         </tr>
 
@@ -95,7 +95,7 @@
 
 
     <div class="">
-          
+
     </div>
     <div class="">
           <label for="filtre">Filtrer par chapitre</label>

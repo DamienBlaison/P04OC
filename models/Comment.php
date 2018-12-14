@@ -162,7 +162,7 @@ function read_comment()
       }
 }
 
-function read_comments_plage()
+function read_comments_plage($a)
 
 {
     if(isset($_POST['filtre']))
@@ -173,13 +173,13 @@ function read_comments_plage()
                       $pagination = ($_GET['plage']-1)*12;
 
                       include('connexion.php');
-                      $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                      $result = $bdd-> query("SELECT * FROM  comments,users where read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                       return $result;
 
                       } else {
                             $pagination=0;
                             include('connexion.php');
-                            $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                            $result = $bdd-> query("SELECT * FROM  comments,users where read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                             return $result;
                       }
                 }
@@ -188,14 +188,14 @@ function read_comments_plage()
                       if (isset($_GET['plage'])){
                       $pagination = ($_GET['plage']-1)*12;
                       include('connexion.php');
-                      $a=$_POST['filtre'];
-                      $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                      $b=$_POST['filtre'];
+                      $result = $bdd-> query("SELECT * FROM  comments,users where article='$b' and read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                       return $result;
 
                       } else {
                             $pagination=0;
                             include('connexion.php');
-                            $result = $bdd-> query("SELECT * FROM  comments where article='$a' and read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                            $result = $bdd-> query("SELECT * FROM  comments,users where article='$b' and read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                             return $result;
                       }
                 }
@@ -207,30 +207,18 @@ function read_comments_plage()
           {
                 $pagination = ($_GET['plage']-1)*12;
                 include('connexion.php');
-                $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                $result = $bdd-> query("SELECT * FROM  comments,users where read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                 return $result;
 
           } else {
                 $pagination=0;
                 include('connexion.php');
-                $result = $bdd-> query("SELECT * FROM  comments where read_status=1 ORDER BY article DESC LIMIT $pagination,12");
+                $result = $bdd-> query("SELECT * FROM  comments,users where read_status='$a' and comments.author=users.id_user ORDER BY article DESC LIMIT $pagination,12");
                 return $result;
           }
 
     }
 }
-
-
-
-
-
-function unread_comments()
-{
-      include('connexion.php');
-      $result = $bdd-> query("SELECT * FROM comments WHERE read_status=0 ORDER BY article DESC ");
-      return $result;
-}
-
 
   function read_comment_statut($a)
     {
@@ -312,11 +300,11 @@ function delete_comment()
      return $result;
      }
 }
-function select_chapter_comments()
+function select_chapter_comments($a)
 {
       include('connexion.php');
 
-      $result = $bdd-> query("SELECT DISTINCT article FROM comments WHERE read_status=0 ");
+      $result = $bdd-> query("SELECT DISTINCT article FROM comments WHERE read_status='$a' ");
       return $result;
 }
 

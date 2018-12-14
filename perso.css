@@ -1,7 +1,10 @@
+
 @font-face {
     font-family: 'Alex';
     src: url(./css/AlexBrush-Regular.ttf);
 }
+
+
 
 html
 {
@@ -43,14 +46,14 @@ iframe
 {
 padding:15px;
 }
-.card-title
+.card-
 {
   background-color:rgb(52, 58, 64);
   color: white;
   padding: 15px;
   border-radius: 5px;
 }
-.card-subtitle
+.card-sub
 {
   background-color: #6c757d;
   color:white;
@@ -94,12 +97,12 @@ background-color: white;
 padding:6px 12px;
 }
 
-.subtitlesection
+.subsection
 {
   background-color: rgba(255,255,255,0.4);
 }
 
-.titlesection
+.section
 {
   background-color: rgba(0,0,0,0.4);
 }
@@ -131,6 +134,7 @@ padding:6px 12px;
   overflow-x: auto;
   overflow-y:hidden;
   height: 100%;
+  padding-bottom: 2.5%;
 }
   .card-wrapper {
     flex: 0 0 auto;
@@ -166,11 +170,11 @@ padding-top: 25px;
 .Titre
 {
   font-family: 'Alex';
-  font-size: 100px;
+  font-size: 5vw;
   text-align: center;
   color: white;
   background-color: rgba(0,0,0,0.5);
-  margin-bottom:150px;
+  margin-bottom:2vw;
 }
 
 .imgChap
@@ -192,7 +196,7 @@ padding-top: 25px;
 .Title
 {
   font-family: 'Alex';
-  font-size:50px;
+  font-size:4vw;
 }
 .more
 {
@@ -210,7 +214,7 @@ padding-top: 25px;
 
 .espace
 {
-  padding-top: 400px;
+  padding-top: 2vw;
 }
 .menuFront
 {
@@ -225,17 +229,22 @@ padding-top: 25px;
 }
 .mt-Titre
 {
-  margin-left:400px;
-  margin-right: 400px;
-  margin-top:400px;
+padding:20%;
   color: white;
+  font-size: 5vw;
+  text-align: center;
 
 
 }
 .mt-Titre H1
 {
-    font-size: 4rem;
+    font-size: 5vw;
 
+}
+
+.btn-group-sm>.btn, .btn-sm,.more
+{
+      font-size: 2vw;
 }
 
 .fadeInDown {
@@ -243,6 +252,10 @@ padding-top: 25px;
   animation-duration: 2s;
 border-bottom-style: solid;
 
+}
+.subtitle
+{
+      margin:0px;
 }
 
 @keyframes fadeInDown {
@@ -280,12 +293,18 @@ border-bottom-style: solid;
 }
 .bgblack
 {
+width:90%;
     background-color: rgba(0,0,0,0.5);
-    padding:50px;
+    margin:5%;
+    padding:5%;
+}
+.bgblack p
+{
+      font-size: 1.5vw;
 }
 #forteroche
 {
-  min-width: 100%;
+  min-width: 60%;
 }
 .mt200
 {
@@ -300,7 +319,7 @@ border-bottom-style: solid;
 }
 .Sub
 {
-  font-size: 32px;
+  font-size: 3vw;
 }
 
 #exampleModalCenterTitle2
@@ -352,4 +371,12 @@ background-color: white;
 .mt20
 {
       margin-top: 20px;
+}
+@media screen and (max-width=768px)
+{
+
+}
+#connexion
+{
+      font-size: 1vw;
 }

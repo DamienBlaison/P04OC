@@ -33,11 +33,11 @@ if( $_SESSION['login']== NULL)
 
         if($_SESSION['data_user']['role']=='admin')
           {
-            ?> <a href="index.php?action=listArticle" class="btn btn-sm btn-outline-secondary"> Administration</a>
+            ?> <a href="index.php?action=listArticle" id="connexion"class="btn btn-sm btn-outline-secondary"> Administration</a>
             <?php
           } else {
             ?>
-          <button type="button" class="btn btn-sm btn-outline-secondary"> Bonjour <?php echo $user['firstName'] ?></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"id="connexion" > Bonjour <?php echo $user['firstName'] ?></button>
           <?php
           };
       };

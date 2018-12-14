@@ -5,11 +5,6 @@
       $id=$_GET['id'];
       $comment2 = new Comment($id,"","","","","","");
 
-      $read_comment = $comment2->read_comment();
-      $status= $comment2->read_comment_status($id);
-      $status = $status->fetch();
-
-
       $comment = new Comment($id,"","","","","","");
 
       if(isset($_POST['MAJstatut']))
@@ -38,7 +33,10 @@
 
             }
       };
-
+      
+      $read_comment = $comment2->read_comment();
+      $status= $comment2->read_comment_status($id);
+      $status = $status->fetch();
 
 
 ?>
@@ -65,12 +63,12 @@
                         <div class="card-body container-fluid">
                               <div class="container-fluid">
                                     <div class="row justify-content-between ">
-                                          <h5 class="card-subtitle mb-2 col-md-11">Titre : <?php echo $data['2']; ?></h5>
+                                          <h5 class="card-subtitle mb-2 col-md-11"><?php echo $data['1']; ?></h5>
                                           <h5 class="col-md-1"><a class="btn btn-danger col-md-12" href="index.php?action=unread_comments"  class="btn btn-danger">Retour</a></h5>
                                     </div>
                               </div>
                               <a href="index.php?action=updateUser&id=<?php echo $data['author']; ?>&filtre=4">
-                                    <h5 class="card-title mb-2 border border-info bg-white text-info">Utilisateur : <?php echo $data['11'] .' '. $data['12'] ;?></h5>
+                                    <h5 class="card-title mb-2 border border-info bg-white text-info">De : <?php echo $data['11'] .' '. $data['12'] ;?></h5>
                               </a>
 
                               <div class="card-text"><?php echo $data['comment'] ;?>
