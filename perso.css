@@ -242,10 +242,6 @@ padding:20%;
 
 }
 
-.btn-group-sm>.btn, .btn-sm,.more
-{
-      font-size: 2vw;
-}
 
 .fadeInDown {
   animation-name: fadeInDown;

@@ -17,13 +17,13 @@ if( $_SESSION['login']== NULL)
 } else {
 
   $user=new User("","","","",$_SESSION['login'],$_SESSION['password'],"");
-  $user=$user->verif_user();
+  $user=$user->verif_user($_SESSION['login']);
   $user=$user->fetch();
 
   if($user === false)
   {
     $_SESSION['login']= NULL;
-    $_SESSION['data_user']=NULL;
+    $_SESSION['data_user']= NULL;
     echo "<script> alert('login ou mot de passe eronné ou inexistant');</script>";
     ?>
       <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginForm">Se connecter</button>

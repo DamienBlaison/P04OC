@@ -47,7 +47,7 @@ $comment = $comment->create_comment();
 }
 else if (isset($_POST['titreComment']) && isset($_POST['ContentComment']))
 {
-      $comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],'1',$_GET['id_article'],'1',"0");
+      $comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],'2',$_GET['id_article'],'1',"0");
       $comment = $comment->create_comment();
 }
 ?>
@@ -69,7 +69,7 @@ if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&& isset($_POST
 }
 else if(isset($_POST['titreSignal']) && isset($_POST['content_signal']) && isset($_POST['id_comment2']))
 {
-      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],'1',$_POST['id_comment2'],'1');
+      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],'2',$_POST['id_comment2'],'1');
      $signal = $signal->create_signal();
      $updateComment = new Comment("","","","","","","");
      $updateComment->update_comment_statut('2',$_POST['id_comment2']);// code...

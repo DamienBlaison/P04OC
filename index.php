@@ -58,6 +58,9 @@
             case 'creationcompte':
             include('./views/frontend/creationcompte.php');
             break;
+            case 'creationcompteko':
+            include('./views/frontend/creationcompteko.php');
+            break;
 
             case 'chapter':
             include('./views/frontend/chapter.php');

@@ -26,16 +26,17 @@ if (isset($_POST['LoginNom'])&&isset($_POST['LoginPrenom'])&&isset($_POST['email
             header("Location: http://localhost:8888/index.php?action=creationcompteko");
       }
 }
- ?>
+?>
 
 
 
-<form class="body compte d-flex align-items-center row" action="index.php?action=creationcompte" method="post">
+<form class="body compte d-flex align-items-center row" action="index.php?action=creationcompteko" method="post">
 
       <div class="container col-md-3 modal-content">
 
         <div class="modal-header row ">
-          <h1>Création de compte</h1>
+          <h1>Désolé</h1>
+          <p>Un compte existe déjà avec ce login</p>
         </div>
 
         <div class="modal-body row ">

@@ -78,10 +78,10 @@ function count_users()
 
   }
 
-function verif_user()
+function verif_user($a)
   {
     include('connexion.php');
-    $result= $bdd->query("SELECT * FROM users WHERE login='$this->login_user' AND password='$this->password_user'");
+    $result= $bdd->query("SELECT * FROM users WHERE login='$a'");
     return $result;
   }
 
