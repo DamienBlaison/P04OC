@@ -1,12 +1,5 @@
 <?php
 
-$config=new Config("","");
-$config=$config->read_configs();
-$array_config=[];
-
-while ($data=$config->fetch()) {
-      array_push($array_config,$data);
-}
 
 if (isset($_SESSION['login']))
 {
@@ -41,38 +34,23 @@ $verif_status=$verif_status['published'];
 
 
 
-if(isset($_POST['titreComment']) && isset($_POST['ContentComment']) && $array_config[1][1]=='on'){
+if(isset($_POST['titreComment']) && isset($_POST['ContentComment'])){
 $comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],$_SESSION['data_user'][0],$_GET['id_article'],'1',"0");
 $comment = $comment->create_comment();
-}
-else if (isset($_POST['titreComment']) && isset($_POST['ContentComment']))
-{
-      $comment = new Comment("",$_POST['titreComment'],$_POST['ContentComment'],'1',$_GET['id_article'],'1',"0");
-      $comment = $comment->create_comment();
-}
-?>
-<?php
+};
 
 $nbArticle=$article->count_articles();
 $nbArticle=$nbArticle->fetch();
-
 ?>
 
 <?php
 
-if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&& isset($_POST['id_comment2']) && $array_config[0][1]==='on')
+if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&&isset($_POST['id_comment2']))
 {
      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],$_SESSION['data_user'][0],$_POST['id_comment2'],'1');
      $signal = $signal->create_signal();
      $updateComment = new Comment("","","","","","","");
      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
-}
-else if(isset($_POST['titreSignal']) && isset($_POST['content_signal']) && isset($_POST['id_comment2']))
-{
-      $signal = new Signal("",$_POST['titreSignal'],$_POST['content_signal'],'1',$_POST['id_comment2'],'1');
-     $signal = $signal->create_signal();
-     $updateComment = new Comment("","","","","","","");
-     $updateComment->update_comment_statut('2',$_POST['id_comment2']);// code...
 }
 
 
@@ -143,7 +121,7 @@ $comments = $comments->read_comments_by_article($_GET['id_article']);
 
           <?php
 
-          if ($_SESSION['login']== NULL && $array_config[1][1]=='on')
+          if ($_SESSION['login']== NULL)
           {?>
             <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected">Commenter</button><?php
           }  else {?>
@@ -274,7 +252,7 @@ $comments = $comments->read_comments_by_article($_GET['id_article']);
                   <p> <?php echo $data['comment']?> </p>
 
                  <?php
-                 if ($_SESSION['login']== NULL && $array_config[0][1] ==='on')
+                 if ($_SESSION['login']== NULL)
                  {?>
                   <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected_signal">Signaler</button>

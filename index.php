@@ -75,10 +75,6 @@
             include('./views/readcomment.php');
             break;
 
-            case 'config':
-            include('./views/config.php');
-            break;
-
             default :
             include('./views/frontend/Home.php');
 
