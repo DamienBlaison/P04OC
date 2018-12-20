@@ -30,9 +30,15 @@
     </li>
 
 
+
       <li class="nav-item">
        <a class="nav-link" href="index.php?action=moderation&statut=2">Signalements</a>
      </li>
+     <li class="nav-item">
+      <a class="nav-link" href="index.php?action=config">
+         Configuration
+      </a>
+  </li>
     </ul>
   </div>
 </nav>
