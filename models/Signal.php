@@ -12,12 +12,12 @@ class Signal
 
 function __construct($id,$title,$content,$author,$comment,$statut)
   {
-    $this->id_signal=$id;
-    $this->title_signal=$title;
-    $this->content_signal=$content;
-    $this->author_signal=$author;
-    $this->comment_signal=$comment;
-    $this->statut_signal=$statut;
+    $this->id_signal=htmlentities($id);
+    $this->title_signal=htmlentities($title);
+    $this->content_signal=htmlentities($content);
+    $this->author_signal=htmlentities($author);
+    $this->comment_signal=htmlentities($comment);
+    $this->statut_signal=htmlentities($statut);
   }
 
 function create_signal()
@@ -28,12 +28,15 @@ function create_signal()
   }
 function read_signal($a)
       {
+      $a=htmlentities($a);
       include('connexion.php');
       $result = $bdd-> query("SELECT * FROM signals,comments,users,articles where status_signal='$a' and signals.id_comment_signal=comments.id_comment and users.id_user = comments.author and articles.id_article=comments.article");
       return $result;
       }
 function update_state_id($a,$b)
       {
+            $a=htmlentities($a);
+            $b=htmlentities($b);
             include('connexion.php');
             $result = $bdd-> exec("UPDATE signals set status_signal='$a' where id_signal='$b'");
             return $result;
