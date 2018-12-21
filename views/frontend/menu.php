@@ -16,8 +16,8 @@ if( $_SESSION['login']== NULL)
 
 } else {
 
-  $user=new User("","","","",$_SESSION['login'],$_SESSION['password'],"");
-  $user=$user->verif_user($_SESSION['login']);
+  $user=new User("","","","",htmlentities(addslashes($_SESSION['login'])),htmlentities(addslashes($_SESSION['password'])),"");
+  $user=$user->verif_user(htmlentities(addslashes($_SESSION['login'])));
   $user=$user->fetch();
 
   if($user === false)

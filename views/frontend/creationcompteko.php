@@ -4,9 +4,9 @@
 if (isset($_POST['LoginNom'])&&isset($_POST['LoginPrenom'])&&isset($_POST['email'])&& isset($_POST['login'])&& isset($_POST['password']))
 {
 
-      $new_user = new User("",$_POST['LoginNom'],$_POST['LoginPrenom'],$_POST['email'],$_POST['login'],$_POST['password'],'reader');
+      $new_user = new User("",htmlentities(addslashes($_POST['LoginNom']),htmlentities(addslashes($_POST['LoginPrenom']),htmlentities(addslashes($_POST['email']),htmlentities(addslashes($_POST['login']),htmlentities(addslashes($_POST['password']),'reader');
 
-      $b=$new_user->verif_user($_POST['login']);
+      $b=$new_user->verif_user(htmlentities(addslashes($_POST['login']));
       $b=$b->fetch();
 
       if($b == false)
@@ -14,8 +14,8 @@ if (isset($_POST['LoginNom'])&&isset($_POST['LoginPrenom'])&&isset($_POST['email
 
             $new_user = $new_user->create_user();
 
-            $_SESSION['login']=$_POST['login'];
-            $_SESSION['password']=$_POST['login'];
+            $_SESSION['login']=htmlentities(addslashes($_POST['login']);
+            $_SESSION['password']=htmlentities(addslashes($_POST['login']);
 
             header("Location: http://localhost:8888");
       }
