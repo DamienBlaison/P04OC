@@ -19,7 +19,7 @@ class Config
 
       function update_config($a,$b){
             include('connexion.php');
-            $result = $bdd-> query("UPDATE config SET param_config='$b' WHERE id='$a'");
+            $result = $bdd-> exec("UPDATE config SET param_config='$b' WHERE id='$a'");
             return $result;
 
       }

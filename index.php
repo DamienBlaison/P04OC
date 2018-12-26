@@ -31,28 +31,28 @@
       switch ($a)
       {
             case 'createArticle' :
-            include('./views/menu.php');
-            include('./views/createArticle.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/createArticle.php');
             break;
             case 'listArticle':
-            include('./views/menu.php');
-            include('./views/listArticle.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/listArticle.php');
             break;
             case 'updateArticle':
-            include('./views/menu.php');
-            include('./views/updateArticle.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/updateArticle.php');
             break;
             case 'listUsers':
-            include('./views/menu.php');
-            include('./views/listUsers.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/listUsers.php');
             break;
             case 'updateUser':
-            include('./views/menu.php');
-            include('./views/updateUser.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/updateUser.php');
             break;
             case 'moderation':
-            include('./views/menu.php');
-            include('./views/moderation.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/moderation.php');
             break;
 
             case 'creationcompte':
@@ -67,19 +67,23 @@
             break;
 
             case 'unread_comments':
-            include('./views/unread_comments.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/unread_comments.php');
             break;
 
             case 'read_comments':
-            include('./views/read_comments.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/read_comments.php');
             break;
 
             case 'readcomment':
-            include('./views/readcomment.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/readcomment.php');
             break;
 
             case 'config':
-            include('./views/config.php');
+            include('./views/backend/menu.php');
+            include('./views/backend/config.php');
             break;
 
             default :

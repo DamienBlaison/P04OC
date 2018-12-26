@@ -1,109 +1,13 @@
-<?php
-
-$config=new Config("","");
-$config=$config->read_configs();
-$array_config=[];
-
-while ($data=$config->fetch()) {
-      array_push($array_config,$data);
-}
-
-if (isset($_SESSION['login']))
-{
-      $_SESSION['login']=$_SESSION['login'];
-}
-else if(isset($_POST['login']) && isset($_POST['password']))
-{
-      $_SESSION['login']=$_POST['login'];
-      $_SESSION['password']=$_POST['password'];
-}
-else
-{
-      $_SESSION['login']= NULL;
-      $_SESSION['password']= NULL;
-};
-?>
 
 <?php
-
-$article = new Article($_GET['id_article'],"","","");
-$data=$article->read_article();
-$data=$data->fetch();
-$id=$_GET['id_article'];
-
-$next=$_GET['id_article']+1;
-$verif_status=new Article($next,"","","");
-$verif_status=$verif_status->read_article();
-$verif_status=$verif_status->fetch();
-$verif_status=$verif_status['published'];
-
-if(isset($_POST['titreComment']) && isset($_POST['ContentComment']) && $array_config[1][1]=='on'){
-
-      $titreComment= htmlentities(addslashes($_POST['titreComment']));
-      $contentComment= htmlentities(addslashes($_POST['ContentComment']));
-      $data_user= htmlentities(addslashes($_SESSION['data_user'][0]));
-      $id_article= htmlentities(addslashes($_GET['id_article']));
-
-      $comment = new Comment("",$titreComment,$contentComment,$data_user,$id_article,'1',"0");
-      $comment = $comment->create_comment();
-}
-else if (isset($_POST['titreComment']) && isset($_POST['ContentComment']))
-{
-      $titreComment= htmlentities(addslashes($_POST['titreComment']));
-      $contentComment= htmlentities(addslashes($_POST['ContentComment']));
-      $id_article= htmlentities(addslashes($_GET['id_article']));
-
-      $comment = new Comment("",$titreComment,$contentComment,'2',$id_article,'1',"0");
-      $comment = $comment->create_comment();
-}
-?>
-<?php
-
-$nbArticle=$article->count_articles();
-$nbArticle=$nbArticle->fetch();
+include('./views/frontend/menu.php');
+include('./././controller/frontend/chapter/chapter_read_config.php');
+include('./././controller/frontend/chapter/chapter_article.php');
+include('./././controller/frontend/chapter/chapter_comment.php');
+include('./././controller/frontend/chapter/chapter_signal.php');
+include('./././controller/frontend/chapter/chapter.php');
 
 ?>
-
-<?php
-
-if (isset($_POST['titreSignal'])&&isset($_POST['content_signal'])&& isset($_POST['id_comment2']) && $array_config[0][1]==='on')
-{
-      $titreSignal = htmlentities(addslashes($_POST['titreSignal']));
-      $content_signal = htmlentities(addslashes($_POST['content_signal']));
-      $user= htmlentities(addslashes($_SESSION['data_user'][0]));
-      $id_comment= htmlentities(addslashes($_POST['id_comment2']));
-
-      $signal = new Signal("",$titreSignal,$content_signal,$user,$id_comment,'1');
-      $signal = $signal->create_signal();
-
-      $updateComment = new Comment("","","","","","","");
-      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
-}
-else if(isset($_POST['titreSignal']) && isset($_POST['content_signal']) && isset($_POST['id_comment2']))
-{
-      $titreSignal = htmlentities(addslashes($_POST['titreSignal']));
-      $content_signal = htmlentities(addslashes($_POST['content_signal']));
-      $id_comment= htmlentities(addslashes($_POST['id_comment2']));
-
-      $signal = new Signal("",$titreSignal,$content_signal,'2',$id_comment,'1');
-      $signal = $signal->create_signal();
-      $updateComment = new Comment("","","","","","","");
-      $updateComment->update_comment_statut('2',$_POST['id_comment2']);
-}
-
-
-?>
-
-<?php
-
-$comments = new Comment("","","","","",'3',"");
-$comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['id_article'])));
-
-?>
-
-
-
-<?php include('./views/frontend/menu.php'); ?>
 
 <div class="body pt150">
       <div class="container ">
@@ -115,15 +19,12 @@ $comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['i
                         <div class="textChap">
                               <div class="Title">
                                     <?php echo $data['title'] ?>
-
                               </div>
                               <a class=" btn btn-outline-light more" href="index.php?">Page précedente</a>
                         </div>
                   </div>
             </div>
-
       </div>
-
       <div class="container">
             <div class="row">
                   <div class="container-fluid mb50">
@@ -155,10 +56,7 @@ $comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['i
                                           };?>
                                     </div>
                                     <div class="">
-
-
                                           <?php
-
                                           if ($_SESSION['login']== NULL && $array_config[1][1]=='on')
                                           {?>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected">Commenter</button><?php
@@ -167,47 +65,32 @@ $comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['i
                                           }
                                           ?>
                                     </div>
-
                               </div>
                         </div>
                   </div>
-
             </div>
       </div>
-
-
       <form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post" >
-
-
             <div class="modal fade" id="connected" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content container-fluid">
                               <div class="modal-header row ">
-
                                     <input type="text" name="titreComment" value=""id="exampleModalCenterTitle" placeholder="Titre du commentaire" class="col-md-12 border border-secondary" required="required"></input>
-
                               </div>
                               <div class="modal-body row ">
-
                                     <textarea type="text" name="ContentComment" value="" id="exampleModalCenterTitle2" placeholder="Commentaire" class="col-md-12 border border-secondary" required="required"></textarea>
-
                               </div>
                               <div class="modal-footer row">
                                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
-
                                     <button type="submit" id="saveComment"class="btn btn-outline-secondary">Envoyer votre commentaire</button>
-
                               </div>
                         </div>
                   </div>
             </div>
       </form>
-
-
       <form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post">
             <div class="modal fade" id="not_connected" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-
                         <div class="modal-content container-fluid">
                               <div class="modal-header row ">
                                     <p>Veuillez vous identifer pour laisser un commentaire</p>
@@ -215,34 +98,25 @@ $comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['i
                                           <span aria-hidden="true">&times;</span>
                                     </button>
                               </div>
-
                               <div class="modal-body row ">
-
                                     <label for="login">Login</label>
                                     <input type="text" name="login"  id="login"  class="col-md-12 border border-secondary" placeholder="Login"r equired="required"></input>
-
                                     <label for="password">Mot de passe</label>
                                     <input type="password" name="password" id="password"  class="col-md-12 border border-secondary" placeholder="Mot de passe"required="required"></input>
-
                               </div>
                               <div class="modal-footer row justify-content-between">
-
                                     <a href="index.php?action=creationcompte"  class="btn btn-primary">Créer son compte</a>
                                     <div class="">
                                           <button type="submit" id="connexion"class="btn btn-outline-secondary">Se connecter</button>
                                     </div>
-
                               </div>
                         </div>
-
                   </div>
             </div>
-
       </form>
       <form class="" action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post">
             <div class="modal fade" id="not_connected_signal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-
                         <div class="modal-content container-fluid">
                               <div class="modal-header row ">
                                     <p>Veuillez vous identifer pour signaler un commentaire</p>
@@ -250,92 +124,79 @@ $comments = $comments->read_comments_by_article(htmlentities(addslashes($_GET['i
                                           <span aria-hidden="true">&times;</span>
                                     </button>
                               </div>
-
                               <div class="modal-body row ">
-
                                     <label for="login">Login</label>
                                     <input type="text" name="login"  id="login"  class="col-md-12 border border-secondary" placeholder="Login"r equired="required"></input>
-
                                     <label for="password">Mot de passe</label>
                                     <input type="password" name="password" id="password"  class="col-md-12 border border-secondary" placeholder="Mot de passe"required="required"></input>
-
                               </div>
                               <div class="modal-footer row justify-content-between">
-
                                     <a href="index.php?action=creationcompte"  class="btn btn-primary">Créer son compte</a>
                                     <div class="">
                                           <button type="submit" id="connexion"class="btn btn-outline-secondary">Se connecter</button>
                                     </div>
-
                               </div>
                         </div>
-
                   </div>
             </div>
-
       </form>
+
+<?php if($test=$test->fetch() !== FALSE){?>
+
       <h1 class="Titre">Vos commentaires</h1>
       <div class="container">
             <div class="row">
                   <div class="container-fluid">
-
-
                         <div class="col-md-12 comments_container border-secondary mb100">
-                              <?php
-                              while ($data=$comments->fetch()) {
-                                    ?>
-                                    <div class="comments bg-white" action="/index.php?action=chapter&id_article=<?php echo $_GET['id_article']?>" method="POST">
-                                          <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName']?> </p>
+                                    <?php
+                                          while ($data=$comments->fetch())
 
-                                          <p> <?php echo $data['comment']?> </p>
+                                          {
+                                          ?>
 
-                                          <?php
-                                          if ($_SESSION['login']== NULL && $array_config[0][1] ==='on')
-                                          {?>
-                                                <div class="d-flex justify-content-end">
-                                                      <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected_signal">Signaler</button>
-                                                </div>
+                                          <div class="comments bg-white">
+                                                <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName']?> </p>
+                                                <p> <?php echo $data['comment']?> </p>
                                                 <?php
-                                          }  else {?>
-                                                <div class="d-flex justify-content-end">
-                                                      <button id="btnSignal" data-toggle="modal" data-target="#connected_signal_<?php echo $data['id_comment']?>" type="button" class="btn btn-sm btn-outline-secondary">Signaler</button>
-                                                </div>
-
-                                                <form action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post" >
-                                                      <div class="modal fade" id="connected_signal_<?php echo $data['id_comment']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                  <div class="modal-content container-fluid">
-                                                                        <div class="modal-header row ">
-                                                                              <input type="text" name="id_comment2" value="<?php echo $data['id_comment']?>"hidden>
-                                                                              <input type="text" name="titreSignal" value=""id="exampleModalCenterTitle" placeholder="Titre du signalement" class="col-md-12 border border-secondary" required="required"></input>
-
-                                                                        </div>
-                                                                        <div class="modal-body row ">
-
-                                                                              <textarea type="text" name="content_signal" value="" id="exampleModalCenterTitle2" placeholder="Signalement" class="col-md-12 border border-secondary" required="required"></textarea>
-
-                                                                        </div>
-                                                                        <div class="modal-footer row">
-                                                                              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
-                                                                              <button type="submit" id="saveSignal"class="btn btn-outline-secondary">Envoyer votre signalement</button>
+                                                      if ($_SESSION['login']== NULL && $array_config[0][1] ==='on')
+                                                      {?>
+                                                            <div class="d-flex justify-content-end">
+                                                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#not_connected_signal">Signaler</button>
+                                                            </div>
+                                                            <?php
+                                                      }  else {?>
+                                                            <div class="d-flex justify-content-end">
+                                                                  <button id="btnSignal" data-toggle="modal" data-target="#connected_signal_<?php echo $data['id_comment']?>" type="button" class="btn btn-sm btn-outline-secondary">Signaler</button>
+                                                            </div>
+                                                            <form action="index.php?action=chapter&id_article=<?php echo $id ?>" method="post" >
+                                                                  <div class="modal fade" id="connected_signal_<?php echo $data['id_comment']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                              <div class="modal-content container-fluid">
+                                                                                    <div class="modal-header row ">
+                                                                                          <input type="text" name="id_comment2" value="<?php echo $data['id_comment']?>"hidden>
+                                                                                          <input type="text" name="titreSignal" value=""id="exampleModalCenterTitle" placeholder="Titre du signalement" class="col-md-12 border border-secondary" required="required"></input>
+                                                                                    </div>
+                                                                                    <div class="modal-body row ">
+                                                                                          <textarea type="text" name="content_signal" value="" id="exampleModalCenterTitle2" placeholder="Signalement" class="col-md-12 border border-secondary" required="required"></textarea>
+                                                                                    </div>
+                                                                                    <div class="modal-footer row">
+                                                                                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                                                                                          <button type="submit" id="saveSignal"class="btn btn-outline-secondary">Envoyer votre signalement</button>
+                                                                                    </div>
+                                                                              </div>
                                                                         </div>
                                                                   </div>
-                                                            </div>
-                                                      </div>
-                                                </form>
-
-
-                                                <?php
-                                          }
+                                                            </form>
+                                                            <?php
+                                                      }
                                           ?>
-                                    </div>
-
-                                    <?php
-                              }
+                                          </div>
+                                          <?php
+                                    }
                               ?>
                         </div>
                   </div>
-
             </div>
       </div>
+<?php }; ?>
 </div>

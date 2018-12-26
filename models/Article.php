@@ -77,7 +77,7 @@ class Article
       function update_article()
       {
             include('connexion.php');
-            $result = $bdd-> query("UPDATE articles SET article='$this->content_article',title='$this->title_article',published='$this->published_article' WHERE id_article='$this->id_article'");
+            $result = $bdd-> exec("UPDATE articles SET article='$this->content_article',title='$this->title_article',published='$this->published_article' WHERE id_article='$this->id_article'");
             return $result;
       }
 
@@ -92,7 +92,7 @@ class Article
       function published_article()
       {
             include('connexion.php');
-            $result = $bdd-> query("UPDATE articles SET published=1 WHERE id_article='$this->id_article'");
+            $result = $bdd-> exec("UPDATE articles SET published=1 WHERE id_article='$this->id_article'");
             return $result;
       }
 
@@ -100,7 +100,7 @@ class Article
       {
 
             include('connexion.php');
-            $result = $bdd-> query("UPDATE articles SET published=0 WHERE id_article='$this->id_article'");
+            $result = $bdd-> exec("UPDATE articles SET published=0 WHERE id_article='$this->id_article'");
             return $result;
       }
 

@@ -4,8 +4,6 @@
     src: url(./css/AlexBrush-Regular.ttf);
 }
 
-
-
 html
 {
   height: 100%;
@@ -374,5 +372,23 @@ background-color: white;
 }
 .btn
 {
-      font-size: 0.5rem;
+      font-size: 1rem;
 }
+.subtitlesection
+{
+      background-color: rgba(255,255,255,0.8);
+}
+.card-subtitle, .card-title
+{
+      background-color: black;
+      border-radius: 5px;
+      color: white;
+      padding:10px;
+}
+
+a
+{
+      color: black;
+}
+.card-text
+{height: 200px;}

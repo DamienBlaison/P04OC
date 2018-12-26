@@ -38,6 +38,12 @@ function update_state_id($a,$b)
             $result = $bdd-> exec("UPDATE signals set status_signal='$a' where id_signal='$b'");
             return $result;
       }
+function delete_signal_user($a)
+      {
+            include('connexion.php');
+            $result = $bdd-> exec("DELETE FROM signals WHERE id_author_signal='$a'");
+            return $result;
+      }
 
 };
 

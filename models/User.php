@@ -55,10 +55,10 @@ function read_user($a)
     return $result;
   }
 
-function updata_user()
+function update_user()
   {
     include('connexion.php');
-    $result = $bdd-> query("UPDATE users SET user='$this->lastName_user',firstName='$this->firstName_user',email='$this->email_user',login='$this->login_user',password='$this->password_user',role='$this->role_user' WHERE id_user='$this->id_user'");
+    $result = $bdd-> exec("UPDATE users SET lastName='$this->lastName_user',firstName='$this->firstName_user',email='$this->email_user',login='$this->login_user',password='$this->password_user',role='$this->role_user' WHERE id_user='$this->id_user'");
     return $result;
   }
 

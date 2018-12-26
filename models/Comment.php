@@ -229,14 +229,14 @@ class Comment
       function update_comment()
       {
             include('connexion.php');
-            $result = $bdd-> query("UPDATE comments SET comment='$this->content_comment',title='$this->title_comment',author='$this->author_comment', statut='$this->statut_comment' WHERE id_comment='$this->id_comment'");
+            $result = $bdd-> exec("UPDATE comments SET comment='$this->content_comment',title='$this->title_comment',author='$this->author_comment', statut='$this->statut_comment' WHERE id_comment='$this->id_comment'");
             return $result;
       }
 
       function update_comment_statut($a,$b)
       {
             include('connexion.php');
-            $result = $bdd-> query("UPDATE comments SET statut='$a' WHERE id_comment='$b'");
+            $result = $bdd-> exec("UPDATE comments SET statut='$a' WHERE id_comment='$b'");
             return $result;
       }
 
@@ -245,6 +245,13 @@ class Comment
       {
             include('connexion.php');
             $result = $bdd-> query("DELETE FROM comments WHERE id_comment='$this->id_comment'");
+            return $result;
+      }
+
+      function delete_comment_user($a)
+      {
+            include('connexion.php');
+            $result = $bdd-> query("DELETE FROM comments WHERE authors='$a'");
             return $result;
       }
 
