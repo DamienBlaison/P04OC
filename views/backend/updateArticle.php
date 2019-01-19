@@ -1,3 +1,6 @@
+
+<?php include("./././controller/backend/update_article.php") ?>
+
 <div class="bodyback">
 
 <div class="container-fluid titlesection">
@@ -11,8 +14,6 @@
 </nav>
 </div>
 </div>
-
-
 
   <div class="accordion" id="accordionExample">
 
@@ -41,9 +42,6 @@
             <input type="submit" class="btn btn-success " value= "Sauvegarder" name="sauvegarder"></input>
             <a href="index.php?action=updateArticle&id=<?php echo $id?>&published=<?php $_GET['published']; ?>"></a>
             <a href="index.php?action=listArticle"  class="btn btn-danger"><i class="fas fa-times"></i></a>
-
-
-
 
         </div>
       </div>

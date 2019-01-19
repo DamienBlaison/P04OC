@@ -27,7 +27,7 @@ if (isset($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['login'],$_POST[
 {
       $update_user = new User($_GET['id'],$_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['login'],$_POST['password'],$_POST['role']);
       switch ($_POST['MAJ']) {
-            case 'Supprimer utlisateur':
+            case 'Supprimer utilisateur':
                   $update_user->delete_user();
                   $comments = new Comment("","","","","","","");
                   $comments-> delete_comment_user($_GET['id']);

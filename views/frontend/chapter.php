@@ -14,6 +14,8 @@ include('./././controller/frontend/chapter/chapter.php');
             <div class="row pb-25 " >
                   <div class="col-md-12 imgChap">
                         <div class="card shadow-sm">
+
+
                               <img class="card-img-top" src="./images/article<?php echo $data['id_article'] ?>.jpg" data-holder-rendered="true" style="width: 100%; display: block;">
                         </div>
                         <div class="textChap">
@@ -153,9 +155,8 @@ include('./././controller/frontend/chapter/chapter.php');
 
                                           {
                                           ?>
-
                                           <div class="comments bg-white">
-                                                <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName']?> </p>
+                                                <p class="border-bottom border-secondary">De : <?php echo $data['firstName'].' '.$data['lastName'].'</br>Titre du commentaire : '.$data[6]?> </p>
                                                 <p> <?php echo $data['comment']?> </p>
                                                 <?php
                                                       if ($_SESSION['login']== NULL && $array_config[0][1] ==='on')

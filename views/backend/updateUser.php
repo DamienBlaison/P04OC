@@ -55,7 +55,7 @@
                                     <div class="row justify-content-around">
                                           <div class="card-body col-md-10 coordonnees">
                                                 <div class="row justify-content-around">
-                                                      <input type="submit" name="MAJ" value="Supprimer utlisateur" class="col-md-5 btn btn-danger">
+                                                      <input type="submit" name="MAJ" value="Supprimer utilisateur" class="col-md-5 btn btn-danger">
                                                       <input type="submit" name="MAJ" value="Sauvegarder" class="col-md-5 btn btn-success">
                                                 </div>
                                           </div>

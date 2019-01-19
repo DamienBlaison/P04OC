@@ -14,7 +14,7 @@ class Article
             $this->content_article=$content;
             $this->published_article=$published;
       }
-
+      
       function save_article()
       {
             include('connexion.php');

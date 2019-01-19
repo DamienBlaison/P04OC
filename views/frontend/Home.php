@@ -21,5 +21,4 @@
       <div class=" container-fluid secHome mb100">
             <?php   include('./views/frontend/otherChapter.php');  ?>
       </div>
-      <?php   include('./views/frontend/footer.php');  ?>
 </div>

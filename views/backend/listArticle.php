@@ -30,7 +30,7 @@
                                     ?>
                                     <tr scope="row" id="<?php echo $donnees['id_article'];?>">
                                           <th style="display: none;"><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4">  <?php echo $donnees['id_article'];?> </a></th>
-                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4">  <?php echo $donnees['title'];?></a></td>
+                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4"><?php echo $donnees['title'];?></a></td>
                                           <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4"><?php if($donnees['published']==0) { echo"non";} else {echo"oui";};?></a></td>
                                           <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4">
                                                 <?php
