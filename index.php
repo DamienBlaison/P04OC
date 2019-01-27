@@ -9,93 +9,69 @@
       <script>tinymce.init({ selector:'#mytextarea' });</script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
       <link rel="stylesheet" href="./css/perso.css" type="text/css">
-
-
 </head>
-<body >
+<body>
 
       <?php
-      session_start();
+            session_start();
 
-      require('./controller/controller.php');
+            require('./controller/controller.php');
 
-      if(isset($_GET['action']))
-      {
-            $a= $_GET['action'];
 
-      }
-      else { $a = 'Home';
+            if(isset($_GET['action'])){
 
-      };
+                  $action           = $_GET['action'];
+                  $front_or_back    = explode('/',$action);
 
-      switch ($a)
-      {
-            case 'createArticle' :
-            include('./views/backend/menu.php');
-            include('./views/backend/createArticle.php');
-            break;
-            case 'listArticle':
-            include('./views/backend/menu.php');
-            include('./views/backend/listArticle.php');
-            break;
-            case 'updateArticle':
-            include('./views/backend/menu.php');
-            include('./views/backend/updateArticle.php');
-            break;
-            case 'listUsers':
-            include('./views/backend/menu.php');
-            include('./views/backend/listUsers.php');
-            break;
-            case 'updateUser':
-            include('./views/backend/menu.php');
-            include('./views/backend/updateUser.php');
-            break;
-            case 'moderation':
-            include('./views/backend/menu.php');
-            include('./views/backend/moderation.php');
-            break;
+            }
 
-            case 'creationcompte':
-            include('./views/frontend/creationcompte.php');
-            break;
-            case 'creationcompteko':
-            include('./views/frontend/creationcompteko.php');
-            break;
+            if(isset($front_or_back[0]) &&  $front_or_back[0] == 'backoffice'){
 
-            case 'chapter':
-            include('./views/frontend/chapter.php');
-            break;
+                  include('./controller/backend/backoffice.php');
 
-            case 'unread_comments':
-            include('./views/backend/menu.php');
-            include('./views/backend/unread_comments.php');
-            break;
+                  $view       = new Backend();
+                  $action     = explode('/',$_GET['action']);
+                  $action     = $action[1];
+                  $result     = $view->$action();
 
-            case 'read_comments':
-            include('./views/backend/menu.php');
-            include('./views/backend/read_comments.php');
-            break;
+                  include('./views/backend/menu.php');
 
-            case 'readcomment':
-            include('./views/backend/menu.php');
-            include('./views/backend/readcomment.php');
-            break;
+                  include('./views/backend/'.$action.'.php');
 
-            case 'config':
-            include('./views/backend/menu.php');
-            include('./views/backend/config.php');
-            break;
+            } else {
 
-            default :
-            include('./views/frontend/Home.php');
+                  include('./controller/frontend/front_office.php');
 
-            break;
-      }
+                  include('./controller/backend/backoffice.php');
 
+                  $backend      = new Backend();
+
+                  $array_config = $backend->config();
+
+
+                  $view       = new Frontend($array_config);
+
+
+                  if(isset($_GET['action'])){
+
+                  $action     = $_GET['action'];
+
+
+                  } else { $action     = 'home';}
+
+
+                  ;
+
+                  $result     = $view->$action();
+
+                  include('./views/frontend/menu.php');
+
+                  include('./views/frontend/'.$action.'.php');
+            }
       ?>
 
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-      </html>
+</html>

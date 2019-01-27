@@ -1,7 +1,6 @@
-<?php include('./././controller/backend/config.php') ?>
 
 <div class="container-fluid titlesection">
-      <div class="card-header row justify-content-between" id="headingOne">
+      <div class="card-header row justify-content-between bg-secondary" id="headingOne">
             <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
@@ -12,7 +11,7 @@
 </div>
 <div class="container-fluid margintb">
       <div class="col-md-12">
-            <form  action="./index.php?action=config" method="POST">
+            <form  action="./index.php?action=backoffice/config" method="POST">
                   <div class="container-fluid">
                         <div class="card-body row justify-content-between">
                               <div class="container-fluid">
@@ -23,11 +22,11 @@
                               <div class="container-fluid">
                                     <div class="col-md-12 border-bottom border-secondary">
                                           <label class="col-md-10"for="config1">Connexion obligatoire pour signaler un commentaire ?</label>
-                                          <input type="checkbox" name="config1" <?php echo $config1 ?>>
+                                          <input type="checkbox" name="config1" <?php echo $result["comment"]?>>
                                     </div>
                                     <div class="col-md-12 border-bottom border-secondary">
                                           <label class="col-md-10" for="config2">Connexion obligatoire pour commenter un chapitre ?</label>
-                                          <input type="checkbox" name="config2" <?php echo $config2 ?>>
+                                          <input type="checkbox" name="config2" <?php echo $result["signal"] ?>>
                                     </div>
                               </div>
                               <div class="mt20 col-md-12 d-flex justify-content-end">

@@ -2,35 +2,22 @@
 class Config
 
 {
-      public $id_config;
-      public $param_config;
-
-      function __construct($id,$param)
-      {
-            $this->id_config=$id;
-            $this->param_config=$param;
-      }
-
-      function read_config($a){
+      function read_config($id_config){
             include('connexion.php');
-            $result = $bdd-> query("SELECT * FROM config WHERE id='$a'");
+            $result = $bdd->query("SELECT * FROM config WHERE id='$id_config'");
             return $result;
       }
-
-      function update_config($a,$b){
+      function update_config($id_config,$param_config){
             include('connexion.php');
-            $result = $bdd-> exec("UPDATE config SET param_config='$b' WHERE id='$a'");
+            $result = $bdd->exec("UPDATE config SET param_config='$param_config' WHERE id='$id_config'");
             return $result;
 
       }
-
       function read_configs(){
             include('connexion.php');
-            $result = $bdd-> query("SELECT * FROM config ");
+            $result = $bdd->query("SELECT * FROM config ");
             return $result;
       }
-
-
 }
 
 

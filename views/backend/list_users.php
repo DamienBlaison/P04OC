@@ -1,4 +1,3 @@
-<?php include('./././controller/backend/listUsers.php') ?>
 <div class="bodyback">
       <div class="container-fluid titlesection">
             <div class="card-header row justify-content-between bg-secondary" id="headingOne">
@@ -11,7 +10,7 @@
                   </nav>
             </div>
       </div>
-      <form class="container-fluid margintb" method="POST" action="./index.php?action=updateArticle">
+      <form class="container-fluid margintb" method="POST" action="./index.php?action=update_article">
             <div class="container-fluid card-body">
                   <div class="col-md-12 mt20">
                         <table class=" table table-bordered table-striped table-hover tablepers">
@@ -25,25 +24,30 @@
                                     <th scope="col">Signalés</th>
                               </tr>
                               <?php
-                              while ($data= $listUser->fetch())
+                              while ($data= $result["listUser"]->fetch())
                               {
                                     ?>
                                     <tr scope="row" id="<?php echo $data['id_user'];?>">
-                                          <td><a href="index.php?action=updateUser&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['firstName'];?></a></td>
-                                          <td><a href="index.php?action=updateUser&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['lastName'];?></a></td>
-                                          <td><a href="index.php?action=updateUser&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['login'];?></a></td>
-                                          <td><a href="index.php?action=updateUser&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['email'];?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_user&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['firstName'];?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_user&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['lastName'];?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_user&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['login'];?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_user&id=<?php echo $data['id_user'];?>&filtre=4"> <?php echo $data['email'];?></a></td>
                                           <td>
                                                 <?php
-                                                $count_comments_by_user= $instanceComment->count_comment_by_user($data['id_user']);
-                                                $count_comments_fetch = $count_comments_by_user->fetch();
+
+                                                $count_comments_by_user = $result["instanceComment"]->count_comment_by_user($data['id_user']);
+                                                $count_comments_fetch   = $count_comments_by_user->fetch();
+
                                                 echo $count_comments_fetch[0];
+
                                                 ?>
                                           </td>
                                           <td>
                                                 <?php
-                                                $count_comments_by_user_statut= $instanceComment->count_comment_by_user_statut($data['id_user'],2);
-                                                $count_comments_fetch = $count_comments_by_user_statut->fetch();
+
+                                                $count_comments_by_user_statut      = $result["instanceComment"]->count_comment_by_user_statut($data['id_user'],2);
+                                                $count_comments_fetch               = $count_comments_by_user_statut->fetch();
+
                                                 echo $count_comments_fetch[0];
                                                 ?>
                                           </td>
@@ -57,30 +61,30 @@
                                     <?php
                                     if(isset($_GET['plage'])&& $_GET['plage']>1){?>
                                           <li class="page-item">
-                                                <a class="page-link" href="index.php?action=listUsers&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_users&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
                                           </li>
                                           <?php
                                     }else{
                                           ?>
                                           <li class="page-item disabled">
-                                                <a class="page-link" href="index.php?action=listUsers&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_users&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
                                           </li>
                                           <?php
                                     }
-                                    for ($i=0; $i < $nbrepage ; $i++) {
+                                    for ($i = 0; $i < $result["nbrepage"] ; $i++) {
                                           ?>
-                                          <li class="page-item"><a href="index.php?action=listUsers&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
+                                          <li class="page-item"><a href="index.php?action=backoffice/list_users&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
                                           <?php
                                     }
-                                    if( (isset($_GET['plage'])) && ($_GET['plage']<$nbrepage)){?>
+                                    if( (isset($_GET['plage'])) && ($_GET['plage'] < $result["nbrepage"])){?>
                                           <li class="page-item">
-                                                <a class="page-link" href="index.php?action=listUsers&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_users&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
                                           </li>
                                           <?php
                                     }else{
                                           ?>
                                           <li class="page-item disabled">
-                                                <a class="page-link" href="index.php?action=listUsers&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_users&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
                                           </li>
                                           <?php
                                     }

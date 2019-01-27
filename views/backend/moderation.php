@@ -1,4 +1,4 @@
-<?php include("./././controller/backend/moderation.php") ?>
+<?php // include("./././controller/backend/moderation.php") ?>
 
 <div class="bodyback">
       <div class="container-fluid titlesection">
@@ -32,7 +32,8 @@
                         </div>
                   </div>
                   <?php
-                  while ($data = $signal_waiting->fetch())
+
+                  while ($data = $result[0]->fetch())
                   {
                         ?>
                         <div class="col-md-12 rounded" id="<?php echo "accordion".$data['id_signal'] ?>">
@@ -45,16 +46,18 @@
                                                 <h5 class="col-md-4"><?php echo $data['5']; ?></h5>
                                                 <h5 class="col-md-4"><?php echo $data['firstName'] .' '. $data['lastName'] ;?></h5>
                                                 <h5 class="col-md-3">
-                                                      <?php $user= new User("","","","","","","");
+                                                      <?php
+                                                      $user = new User("","","","","","","");
                                                       $user = $user->read_user($data['id_author_signal']);
-                                                      $user= $user->fetch();
+                                                      $user = $user->fetch();
+
                                                       echo $user['firstName'].' '.$user['lastName'];
                                                       ?>
                                                 </h5>
                                           </div>
                                     </div>
                                     <div id="collapse<?php echo $data['id_signal'] ?>" class="collapse border border-top-0 border-secondary" aria-labelledby="heading<?php echo $data['id_signal'] ?>" data-parent="#<?php echo "accordion".$data['id_signal'] ?>">
-                                          <form action="./index.php?action=moderation" method="POST" class="col-md-12 cardpers">
+                                          <form action="./index.php?action=backoffice/moderation" method="POST" class="col-md-12 cardpers">
                                                 <div class="card-body container-fluid ">
                                                       <div class="row">
                                                             <div class="container-fluid">

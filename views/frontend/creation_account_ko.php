@@ -1,7 +1,5 @@
-<?php include('./views/frontend/menu.php')?>
-<?php include('./././controller/frontend/creationcompte/creationcompte.php') ?>
 
-<form class="body compte d-flex align-items-center row" action="index.php?action=creationcompteko" method="post">
+<form class="body compte d-flex align-items-center row" action="index.php?action=creation_account_ko" method="post">
       <div class="container col-md-3 modal-content">
             <div class="modal-header row ">
                   <h1>Désolé</h1>
@@ -20,8 +18,8 @@
                   <input type="password" name="password" id="password"  class="col-md-12 border border-secondary rounded" placeholder="Mot de passe"required="required"></input>
             </div>
             <div class="modal-footer row justify-content-between">
-                  <a href="index.php?action=home"  class="btn btn-outline-secondary">Revenir à l'accueil</a>
-                  <button type="submit" id="saveComment"class="btn btn-primary">S'inscrire</button>
+                  <a href="index.php?action=home"  class="btn btn-outline-danger">Revenir à l'accueil</a>
+                  <button type="submit" id="saveComment"class="btn btn-outline-primary">S'inscrire</button>
             </div>
       </div>
 </form>

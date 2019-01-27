@@ -1,7 +1,6 @@
-<?php include('./././controller/backend/createArticle.php') ?>
 
 <div class="bodyback">
-      <form  action="./index.php?action=createArticle" method="POST">
+      <form  action="./index.php?action=backoffice/create_article" method="POST">
             <div class="container-fluid titlesection">
                   <div class="card-header row justify-content-between bg-secondary" id="headingOne">
                         <nav aria-label="breadcrumb">
@@ -14,7 +13,7 @@
                         <div>
                               <button type="button" class="btn btn-primary ">Publier</button>
                               <input type="submit" class="btn btn-success " value= "Sauvegarder" name="sauvegarder"></input>
-                              <a href="index.php?action=listArticle&plage=1"  class="btn btn-danger"><i class="fas fa-times"></i></a>
+                              <a href="index.php?action=backoffice/list_article&plage=1"  class="btn btn-danger"><i class="fas fa-times"></i></a>
                         </div>
                   </div>
             </div>
@@ -29,4 +28,4 @@
       </form>
 </div>
 </div>
-</div>
+</div>]

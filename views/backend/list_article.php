@@ -1,4 +1,3 @@
-<?php include('./././controller/backend/listArticle.php') ?>
 <div class="bodyback">
       <div class="container-fluid titlesection">
             <div class="card-header row justify-content-between bg-secondary" id="headingOne">
@@ -11,7 +10,7 @@
                   </nav>
             </div>
       </div>
-      <form class="container-fluid margintb" method="POST" action="./index.php?action=updateArticle">
+      <form class="container-fluid margintb" method="POST" action="./index.php?action=update_article">
             <div class="container-fluid card-body">
                   <div class="col-md-12 mt20">
                         <table class=" table table-bordered table-striped table-hover tablepers">
@@ -23,29 +22,36 @@
                                     <th scope="col">Commentaires signalés</th>
                               </tr>
                               <?php
-                              while ($donnees = $listArticle->fetch())
+                              while ($data = $result["list_article"]->fetch())
                               {
-                                    $a=$donnees['id_article'];
-                                    $instanceComment = new Comment("","","","",$a,"","");
+                                    $id_article = $data['id_article'];
+                                    $instanceComment = new Comment("","","","",$id_article,"","");
                                     ?>
-                                    <tr scope="row" id="<?php echo $donnees['id_article'];?>">
-                                          <th style="display: none;"><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4">  <?php echo $donnees['id_article'];?> </a></th>
-                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4"><?php echo $donnees['title'];?></a></td>
-                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4"><?php if($donnees['published']==0) { echo"non";} else {echo"oui";};?></a></td>
-                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=4">
+                                    <tr scope="row" id="<?php echo $data['id_article'];?>">
+                                          <th style="display: none;"><a href="index.php?action=backoffice/update_article&id=<?php echo $data['id_article'];?>&published=<?php echo $data['published']; ?>&filtre=4">  <?php echo $data['id_article'];?> </a></th>
+                                          <td><a href="index.php?action=backoffice/update_article&id=<?php echo $data['id_article'];?>&published=<?php echo $data['published']; ?>&filtre=4"><?php echo $data['title'];?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_article&id=<?php echo $data['id_article'];?>&published=<?php echo $data['published']; ?>&filtre=4"><?php if($data['published']==0) { echo"non";} else {echo"oui";};?></a></td>
+                                          <td><a href="index.php?action=backoffice/update_article&id=<?php echo $data['id_article'];?>&published=<?php echo $data['published']; ?>&filtre=4">
                                                 <?php
-                                                $count_comments= $instanceComment->count_comment($a);
-                                                $count_comments_fetch = $count_comments->fetch();
+
+                                                $count_comments         = $instanceComment->count_comment($id_article);
+                                                $count_comments_fetch   = $count_comments->fetch();
+
                                                 echo $count_comments_fetch[0];
+
                                                 ?>
                                           </a></td>
-                                          <td><a href="index.php?action=updateArticle&id=<?php echo $donnees['id_article'];?>&published=<?php echo $donnees['published']; ?>&filtre=2">
+                                          <td><a href="index.php?action=backoffice/update_article&id=<?php echo $data['id_article'];?>&published=<?php echo $data['published']; ?>&filtre=2">
 
                                                 <?php
-                                                $count_moderation= $instanceComment->read_comment_statut(2);
+
+                                                $count_moderation       = $instanceComment->read_comment_statut(2);
                                                 $count_moderation_fetch = $count_moderation->fetch();
+
                                                 echo $count_moderation_fetch[1];
-                                                ?></a>
+
+                                                ?>
+                                          </a>
                                           </td>
                                     </tr>
                                     <?php
@@ -57,7 +63,7 @@
                                     <?php
                                     if(isset($_GET['plage'])&& $_GET['plage']>1){?>
                                           <li class="page-item">
-                                                <a class="page-link" href="index.php?action=listArticle&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_article&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
                                           </li>
                                           <?php
                                     }
@@ -65,18 +71,18 @@
                                     {
                                           ?>
                                           <li class="page-item disabled">
-                                                <a class="page-link" href="index.php?action=listArticle&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_article&plage=<?php echo $_GET['plage']-1;?>" tabindex="-1">Previous</a>
                                           </li>
                                           <?php
                                     }
-                                    for ($i=0; $i < $nbrepage ; $i++) {
+                                    for ($i=0; $i < $result["nbrepage"] ; $i++) {
                                           ?>
-                                          <li class="page-item"><a href="index.php?action=listArticle&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
+                                          <li class="page-item"><a href="index.php?action=backoffice/list_article&plage=<?php echo $i+1;?>" class="page-link"><?php echo $i+1 ?></a></li>
                                           <?php
                                     }
-                                    if( (isset($_GET['plage'])) && ($_GET['plage']<$nbrepage)){?>
+                                    if( (isset($_GET['plage'])) && ($_GET['plage'] < $result["nbrepage"])){?>
                                           <li class="page-item">
-                                                <a class="page-link" href="index.php?action=listArticle&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_article&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
                                           </li>
                                           <?php
                                     }
@@ -84,7 +90,7 @@
                                     {
                                           ?>
                                           <li class="page-item disabled">
-                                                <a class="page-link" href="index.php?action=listArticle&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
+                                                <a class="page-link" href="index.php?action=backoffice/list_article&plage=<?php echo $_GET['plage']+1;?>" tabindex="+1">Next</a>
                                           </li>
                                           <?php
                                     }
