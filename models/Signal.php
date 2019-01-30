@@ -1,6 +1,4 @@
-
 <?php
-
 class Signal
 {
       public $id_signal;
@@ -40,5 +38,3 @@ class Signal
             return $result;
       }
 };
-
-?>

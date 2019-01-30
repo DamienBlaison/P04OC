@@ -1,6 +1,4 @@
-
 <?php
-
 class Comment
 {
       public $id_comment;
@@ -296,5 +294,4 @@ class Comment
             $result = $bdd->query("SELECT DISTINCT article FROM comments WHERE read_status='$read_status' ");
             return $result;
       }
-
 }

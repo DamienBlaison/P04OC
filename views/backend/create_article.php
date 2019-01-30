@@ -1,4 +1,3 @@
-
 <div class="bodyback">
       <form  action="./index.php?action=backoffice/create_article" method="POST">
             <div class="container-fluid titlesection">

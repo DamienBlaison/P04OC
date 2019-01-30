@@ -24,7 +24,7 @@
                                     <th scope="col">Signalés</th>
                               </tr>
                               <?php
-                              while ($data= $result["listUser"]->fetch())
+                              while ($data = $result["listUser"]->fetch())
                               {
                                     ?>
                                     <tr scope="row" id="<?php echo $data['id_user'];?>">

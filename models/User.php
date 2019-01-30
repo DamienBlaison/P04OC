@@ -1,6 +1,4 @@
-
 <?php
-
 class User
 {
       public $id_user;
@@ -31,13 +29,13 @@ class User
 
                   $pagination = ($_GET['plage']-1)*12;
                   include('connexion.php');
-                  $result = $bdd->query("SELECT * FROM  Users ORDER BY id_user DESC LIMIT $pagination,12");
+                  $result = $bdd->query("SELECT * FROM users ORDER BY id_user DESC LIMIT $pagination,10");
                   return $result;
 
             } else {
-                  $pagination=0;
+
                   include('connexion.php');
-                  $result = $bdd->query("SELECT * FROM  Users ORDER BY id_user DESC LIMIT $pagination,12");
+                  $result = $bdd->query("SELECT * FROM users ORDER BY id_user DESC LIMIT 0,10");
                   return $result;
             }
 
@@ -105,5 +103,3 @@ class User
       }
 
 }
-
-?>

@@ -1,4 +1,3 @@
-
 <form class="body compte d-flex align-items-center row" action="index.php?action=creation_account_ko" method="post">
       <div class="container col-md-3 modal-content">
             <div class="modal-header row ">

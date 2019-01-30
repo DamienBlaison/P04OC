@@ -1,5 +1,4 @@
-<?php
-class Frontend{
+<?php class Frontend{
 
       // user must be logged to comment or signal ???
 
@@ -11,6 +10,8 @@ class Frontend{
 
       }
 
+      // informations to the homepage
+
       function home(){
 
             $lastarticle      = new Article("","","","");
@@ -20,8 +21,10 @@ class Frontend{
 
             $articles         = $lastarticle->read_articles_front();
 
-            return  $date     = [$last_article,$articles]  ;
+            return  $data     = [$last_article,$articles];
       }
+
+      // informations to a specific chapter
 
       function chapter(){
 
@@ -80,7 +83,7 @@ class Frontend{
                         $comment          = new Comment("",$titreComment,$contentComment,$data_user,$id_article,'1',"0");
                         $comment          = $comment->create_comment();
 
-                        header("Location: http://localhost:8888/index.php?action=congrats_comment");
+                        header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=congrats_comment");
 
                   }
             }
@@ -104,7 +107,7 @@ class Frontend{
                   $comment          = new Comment("",$titreComment,$contentComment,$data_user,$id_article,'1',"0");
                   $comment          = $comment->create_comment();
 
-                  header("Location: http://localhost:8888/index.php?action=congrats_comment");
+                  header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=congrats_comment");
 
             }
       }
@@ -169,8 +172,6 @@ class Frontend{
 
                   $verif_user = $new_user->verif_user();
 
-                  var_dump($verif_user);
-
                   if($verif_user == false){
 
                         $new_user->create_user();
@@ -183,19 +184,16 @@ class Frontend{
 
                         $_SESSION["id_user"] = $recup_id["id_user"];
 
-                        header("Location: http://localhost:8888");
+                        header("Location: http://p4.projet-bd-open-classroom.fr");
                   }
 
                   else
 
                   {
-
-                        header("Location: http://localhost:8888/index.php?action=creation_account_ko");
+                        header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=creation_account_ko");
 
                   }
-
             }
-
       }
       function creation_account_ko(){
             if (isset($_POST['LoginNom']) && isset($_POST['LoginPrenom']) && isset($_POST['email']) && isset($_POST['login']) && isset($_POST['password'])){
@@ -223,21 +221,16 @@ class Frontend{
 
                         $_SESSION["id_user"] = $recup_id["id_user"];
 
-                        header("Location: http://localhost:8888");
+                        header("Location: http://p4.projet-bd-open-classroom.fr");
                   }
-
                   else
-
                   {
-
-                        header("Location: http://localhost:8888/index.php?action=creation_account_ko");
-
+                        header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=creation_account_ko");
                   }
-
             }
-
       }
       function log_in(){
+
 
             if (isset($_POST["login"]) && isset($_POST['password'])){
 
@@ -250,31 +243,28 @@ class Frontend{
 
                   $_SESSION["id_user"] = $result["id_user"];
 
-                  if ( $result['verif_password'] == false) {
+                  if ( $result['verif_password'] !== false) {
 
-                        $infos = '<p class="btn btn-outline-danger col-md-12"> Les informations de connexion sont incorrectes </p>';
-
-                  } else {
-                        $infos ="";
+                        $_SESSION["id_user"] = $result["id_user"];
 
                         $_SESSION['login'] = $_POST["login"];
 
-                        if($verif_login->verif_role() == "admin"){
-                              header("Location: http://localhost:8888/index.php?action=backoffice/list_article");
+                        if($verif_login->verif_role() == "admin")
+                        {
+                              header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=backoffice/list_article");
+                              //header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=backoffice/list_article");
 
                         }else{
-                              header("Location: http://localhost:8888/index.php");
+
+                              header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=home");
+                              //header("Location: http://p4.projet-bd-open-classroom.fr/index.php?action=home");
                         }
 
+                  } else {
+
+                        return $infos = '<p class="btn btn-outline-danger col-md-12"> Les informations de connexion sont incorrectes </p>';
                   }
-
-                  return $infos;
             }
-
-
-
-
-
       }
       function log_out(){
             // call the session
@@ -287,7 +277,9 @@ class Frontend{
             session_destroy();
 
             // rediirect to the homepage
-            header("Location: http://localhost:8888/index.php");
+            //header("Location: http://p4.projet-bd-open-classroom.fr/index.php");
+            header("Location: http://p4.projet-bd-open-classroom.fr/index.php");
       }
 
 }
+?>

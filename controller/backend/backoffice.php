@@ -322,7 +322,7 @@ class Backend{
                         $signal     = new Signal("","","","","","");
                         $signal->delete_signal_user($_GET['id']);
 
-                        header("location:http://localhost:8888/index.php?action=backoffice/list_users&plage=1");
+                        header("location:http://p4.projet-bd-open-classroom.fr/index.php?action=backoffice/list_users&plage=1");
                         break;
 
                         case 'Sauvegarder':
@@ -378,7 +378,7 @@ class Backend{
 
       }
 
-      // comments and management
+      // comments management
       function moderation(){
 
             // instanciation
@@ -515,6 +515,6 @@ class Backend{
             session_destroy();
 
             // rediirect to the homepage
-            header("Location: http://localhost:8888/index.php");
+            header("Location: http://p4.projet-bd-open-classroom.fr/index.php");
       }
 }

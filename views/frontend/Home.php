@@ -1,4 +1,3 @@
-
 <div class="col12">
       <div class="container-fluid mt-Titre justify-content-around">
             <div class="">
@@ -57,6 +56,6 @@
                                     </div>
                               </div>
                         <?php } ?>
-                  </div>
+            </div>
       </div>
 </div>

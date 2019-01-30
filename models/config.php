@@ -19,6 +19,3 @@ class Config
             return $result;
       }
 }
-
-
-?>

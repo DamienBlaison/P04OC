@@ -1,11 +1,9 @@
-
-<form class="" action="" method="post">
+<form class="" action="index.php?action=log_in" method="post">
       <div class="" id="LoginForm" tabindex="-1" role="dialog" aria-labelledby="Login">
             <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content container-fluid">
                         <div class="modal-header row ">
-                              <h2>Informations de connexion</h2>
-
+                              <h2>Informations de connexion toto</h2>
                         </div>
                         <div class="modal-body row ">
                               <?php echo $result ?>
